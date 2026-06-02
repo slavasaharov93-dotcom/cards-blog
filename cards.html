@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карты и цены — CardsAbroad</title>
+<meta name="description" content="Каталог зарубежных карт для россиян 2026: Visa и Mastercard, цены и условия.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+
+<script>
+  // Применяем тему до отрисовки, чтобы не было вспышки.
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">◈</span>
+      <span class="brand-text">CardsAbroad<small>Зарубежные карты для россиян — 2026</small></span>
+    </a>
+    <nav class="nav" id="site-nav"><a href="index.html">Главная</a><a href="cards.html" class="active">Карты и цены</a><a href="services.html">Услуги</a><a href="subscriptions.html">Подписки</a><a href="kazakhstan.html">Казахстан</a><a href="index.html#blog">Блог</a><a href="about.html">О нас</a></nav>
+    <div class="header-right">
+      <a class="btn btn-primary btn-sm header-cta" href="order.html">Оформить</a>
+      <button class="theme-toggle" type="button" aria-label="Переключить тему" title="Светлая / тёмная тема">
+        <span class="ic-sun">☀</span><span class="ic-moon">☾</span>
+      </button>
+      <button class="nav-toggle" type="button" aria-label="Меню" aria-controls="site-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main>
+
+<section class="hero hero-sm">
+  <div class="container">
+    <span class="eyebrow">Каталог · 19 карт</span>
+    <h1>Карты и цены</h1>
+    <p class="lead">Visa и Mastercard банков Казахстана, Кыргызстана, Армении, Турции и других стран.
+    Цены — от 9 990 ₽. Условия указаны по данным партнёров и уточняются при оформлении.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#catalog">Смотреть каталог</a>
+      <a class="btn btn-ghost" href="order.html">Оформить заявку</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="infographic-section">
+  <div class="container">
+    <div class="info-grid"><div class="info-tile">
+        <span class="info-ic"><svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></span>
+        <b>9 стран</b>
+        <span class="muted small">Казахстан, Кыргызстан, Армения, Турция и другие</span>
+      </div><div class="info-tile">
+        <span class="info-ic"><svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 9.5h18M6.5 14.5h4"/></svg></span>
+        <b>Visa · MC · UnionPay</b>
+        <span class="muted small">Карты международных платёжных систем</span>
+      </div><div class="info-tile">
+        <span class="info-ic"><svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg></span>
+        <b>от 1 дня</b>
+        <span class="muted small">Виртуальная — сразу, пластик — курьером</span>
+      </div><div class="info-tile">
+        <span class="info-ic"><svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <b>Гарантия</b>
+        <span class="muted small">Вернём деньги, если банк отказал</span>
+      </div></div>
+    <div class="pay-row">
+      <span class="muted small">Поддерживаемые системы:</span>
+      <div class="pay-badges"><span class="pay-badge">VISA</span><span class="pay-badge">Mastercard</span><span class="pay-badge">UnionPay</span></div>
+      <span class="muted small">оплата в 150+ странах и в большинстве онлайн-сервисов</span>
+    </div>
+  </div>
+</section>
+
+<section id="catalog" class="offers-section">
+  <div class="container">
+    <div class="section-head"><h2>Все карты</h2>
+      <p class="muted">Отфильтруйте по задаче. Цена — за оформление; активация и обслуживание указаны отдельно.</p></div>
+    <div class="filter-bar"><button class="filter-chip active" data-filter="all">Все</button><button class="filter-chip" data-filter="travel">Путешествия</button><button class="filter-chip" data-filter="subscribe">Подписки и онлайн</button><button class="filter-chip" data-filter="swift">SWIFT-переводы</button><button class="filter-chip" data-filter="freelance">Фриланс и доход</button></div>
+    <div class="offers-grid"><article class="offer is-popular" data-use="subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇰🇿</span>
+    <div class="offer-headtext">
+      <h3>Казахстан</h3>
+      <span class="offer-sub">MasterCard · Дебетовая</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">MasterCard Standard</div>
+  <div class="offer-price">14 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>5 дней</b></li><li><span>Валюты</span><b>USD</b></li><li><span>Активация</span><b>Бесплатно (доставка 20 000 ₸)</b></li><li><span>Обслуживание</span><b>eResidency $120 (1-й год), далее $499</b></li><li><span>Снятие/день</span><b>Без заявленных лимитов</b></li><li><span>Покупки/день</span><b>Без заявленных лимитов</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Нужна казахстанская SIM-карта</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-popular" data-use="subscribe travel">
+  <div class="offer-head">
+    <span class="offer-flag">🇹🇯</span>
+    <div class="offer-headtext">
+      <h3>Таджикистан</h3>
+      <span class="offer-sub">Visa · Дебетовая</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">VISA Gold</div>
+  <div class="offer-price">21 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>3 дня</b></li><li><span>Активация</span><b>$35</b></li><li><span>Обслуживание</span><b>$2/мес</b></li><li><span>Снятие/день</span><b>$5 000/день</b></li><li><span>Покупки/день</span><b>$10 000/день (онлайн)</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $3)</b></li><li><span>Срок действия</span><b>3 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Пополнение: ВТБ, Сбер, Газпромбанк, МТС Банк, Т-Банк, ЮMoney</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-popular" data-use="travel subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇰🇬</span>
+    <div class="offer-headtext">
+      <h3>Кыргызстан</h3>
+      <span class="offer-sub">Visa · Дебетовая / Кредитная</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">VISA мультивалютная (Gold/Infinite)</div>
+  <div class="offer-price">32 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>7–17 дней</b></li><li><span>Валюты</span><b>USD</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>$20/год</b></li><li><span>Снятие/день</span><b>$6 000/день</b></li><li><span>Покупки/день</span><b>$6 000/день</b></li><li><span>Комиссия снятия</span><b>1% (мин. 250 сом / $3)</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Низкая годовая плата</span><span class='chip'>Выбор дебет/кредит</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="travel swift">
+  <div class="offer-head">
+    <span class="offer-flag">🇰🇬</span>
+    <div class="offer-headtext">
+      <h3>Кыргызстан</h3>
+      <span class="offer-sub">Visa · Дебетовая</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">VISA Gold</div>
+  <div class="offer-price">34 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>14 дней</b></li><li><span>Валюты</span><b>USD, EUR</b></li><li><span>Активация</span><b>$150</b></li><li><span>Обслуживание</span><b>$50/год</b></li><li><span>Снятие/день</span><b>$5 000 / €5 000 в день</b></li><li><span>Покупки/день</span><b>$15 000/день (офлайн и онлайн)</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $2)</b></li><li><span>Срок действия</span><b>3 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Исходящий SWIFT</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🌐</span>
+    <div class="offer-headtext">
+      <h3>Банк СНГ</h3>
+      <span class="offer-sub">Visa · Кредитная</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">Credit Card (Gold)</div>
+  <div class="offer-price">34 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>10 дней</b></li><li><span>Валюты</span><b>USD</b></li><li><span>Активация</span><b>$40</b></li><li><span>Обслуживание</span><b>$10 (со 2-го года)</b></li><li><span>Снятие/день</span><b>$1 000/день</b></li><li><span>Покупки/день</span><b>$5 000/день</b></li><li><span>Комиссия снятия</span><b>2% (мин. $2)</b></li><li><span>Срок действия</span><b>4 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Недорогое обслуживание</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-popular" data-use="travel freelance">
+  <div class="offer-head">
+    <span class="offer-flag">🇰🇬</span>
+    <div class="offer-headtext">
+      <h3>Кыргызстан</h3>
+      <span class="offer-sub">Visa · Кредитная</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">VISA Credit (Platinum/Signature)</div>
+  <div class="offer-price">35 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>14 дней</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>$150/год</b></li><li><span>Снятие/день</span><b>Без лимита</b></li><li><span>Покупки/день</span><b>Без лимита</b></li><li><span>Комиссия снятия</span><b>1% (мин. $2)</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Без лимитов</span><span class='chip'>Подходит для аренды авто (auto-rental)</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇦🇲</span>
+    <div class="offer-headtext">
+      <h3>Армения</h3>
+      <span class="offer-sub">MasterCard · Дебетовая</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">MasterCard Standard</div>
+  <div class="offer-price">37 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>17 дней</b></li><li><span>Валюты</span><b>USD, EUR</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>40 000 AMD за 2 года + мин. баланс 10 €/$</b></li><li><span>Снятие/день</span><b>$2 000 / €2 000 в день</b></li><li><span>Покупки/день</span><b>$3 000 / €3 000 в день</b></li><li><span>Комиссия снятия</span><b>2% (мин. 2 500 AMD)</b></li><li><span>Срок действия</span><b>4 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Карта надёжной армянской системы</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🌐</span>
+    <div class="offer-headtext">
+      <h3>Банк СНГ</h3>
+      <span class="offer-sub">Visa · Дебетовая</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">VISA (Classic/Platinum)</div>
+  <div class="offer-price">38 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>5–10 дней</b></li><li><span>Валюты</span><b>USD, EUR</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>$50 за 5 лет</b></li><li><span>Снятие/день</span><b>$2 000/день</b></li><li><span>Покупки/день</span><b>$2 000/день</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $0,20)</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Низкая комиссия за снятие</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="travel">
+  <div class="offer-head">
+    <span class="offer-flag">🇰🇬</span>
+    <div class="offer-headtext">
+      <h3>Кыргызстан</h3>
+      <span class="offer-sub">Visa · Дебетовая</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">VISA Gold Premium</div>
+  <div class="offer-price">38 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>17 дней</b></li><li><span>Валюты</span><b>USD, EUR</b></li><li><span>Активация</span><b>$77 + депозит 5 000 сом</b></li><li><span>Обслуживание</span><b>$100 (со 2-го года)</b></li><li><span>Снятие/день</span><b>$10 000/день</b></li><li><span>Покупки/день</span><b>$25 000/день</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $2)</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Высокие лимиты</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="freelance swift">
+  <div class="offer-head">
+    <span class="offer-flag">🇦🇲</span>
+    <div class="offer-headtext">
+      <h3>Армения</h3>
+      <span class="offer-sub">Visa · Кредитная</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">VISA Credit (Signature/Infinite)</div>
+  <div class="offer-price">54 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>21 день</b></li><li><span>Валюты</span><b>USD, EUR</b></li><li><span>Активация</span><b>$130</b></li><li><span>Обслуживание</span><b>$26/мес + $182/год</b></li><li><span>Снятие/день</span><b>$3 000/день</b></li><li><span>Покупки/день</span><b>офлайн $30 000 / онлайн $20 000 в день</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $4)</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Премиальный уровень</span><span class='chip'>Исходящий SWIFT</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="travel swift">
+  <div class="offer-head">
+    <span class="offer-flag">🇹🇷</span>
+    <div class="offer-headtext">
+      <h3>Турция</h3>
+      <span class="offer-sub">MasterCard · Дебетовая</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">MasterCard Standard</div>
+  <div class="offer-price">62 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>21 день</b></li><li><span>Валюты</span><b>USD, EUR, TRY</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>Включена в стоимость</b></li><li><span>Снятие/день</span><b>7 000 TRY/день</b></li><li><span>Покупки/день</span><b>100 000 TRY/день</b></li><li><span>Комиссия снятия</span><b>Бесплатно в Турции, 2–3% за рубежом</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Исходящий SWIFT</span><span class='chip'>Счёт в лирах/долларах/евро</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-popular" data-use="swift freelance">
+  <div class="offer-head">
+    <span class="offer-flag">🌍</span>
+    <div class="offer-headtext">
+      <h3>Международный банк</h3>
+      <span class="offer-sub">Visa · Кредитная</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">VISA (Platinum/Signature)</div>
+  <div class="offer-price">64 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>21 день</b></li><li><span>Валюты</span><b>Мультивалютная</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>$22/мес или $220/год</b></li><li><span>Снятие/день</span><b>$18 000/день, $55 000/мес</b></li><li><span>Покупки/день</span><b>$36 000/день</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $3)</b></li><li><span>Срок действия</span><b>4 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Высокие лимиты</span><span class='chip'>Мультивалютный счёт</span><span class='chip'>Исходящий SWIFT</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="swift freelance">
+  <div class="offer-head">
+    <span class="offer-flag">🌍</span>
+    <div class="offer-headtext">
+      <h3>Международный банк</h3>
+      <span class="offer-sub">MasterCard · Кредитная</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">MasterCard Elite</div>
+  <div class="offer-price">67 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>21 день</b></li><li><span>Валюты</span><b>Мультивалютная</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>$22/мес или $220/год</b></li><li><span>Снятие/день</span><b>$18 000/день, $55 000/мес</b></li><li><span>Покупки/день</span><b>$36 000/день</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $3)</b></li><li><span>Срок действия</span><b>4 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Премиальный статус Elite</span><span class='chip'>Мультивалютный счёт</span><span class='chip'>Исходящий SWIFT</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="swift travel">
+  <div class="offer-head">
+    <span class="offer-flag">🇦🇲</span>
+    <div class="offer-headtext">
+      <h3>Армения</h3>
+      <span class="offer-sub">Visa · Дебетовая</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">VISA (Classic/Gold)</div>
+  <div class="offer-price">73 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>25 дней</b></li><li><span>Валюты</span><b>USD, EUR</b></li><li><span>Активация</span><b>200 000 – 15 000 000 AMD (зависит от курса)</b></li><li><span>Обслуживание</span><b>0 – 1 000 000 AMD (зависит от курса)</b></li><li><span>Снятие/день</span><b>до 5 000 000 AMD/день</b></li><li><span>Покупки/день</span><b>до 8 000 000 AMD/день</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. 1 500 AMD)</b></li><li><span>Срок действия</span><b>3 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Максимально надёжный банк</span><span class='chip'>Исходящий SWIFT</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer" data-use="swift">
+  <div class="offer-head">
+    <span class="offer-flag">🇦🇲</span>
+    <div class="offer-headtext">
+      <h3>Армения</h3>
+      <span class="offer-sub">MasterCard · Дебетовая</span>
+    </div>
+    
+  </div>
+  <div class="offer-name">MasterCard (Standard/World)</div>
+  <div class="offer-price">73 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>25 дней</b></li><li><span>Валюты</span><b>USD, EUR</b></li><li><span>Активация</span><b>200 000 – 15 000 000 AMD (зависит от курса)</b></li><li><span>Обслуживание</span><b>0 – 1 000 000 AMD (зависит от курса)</b></li><li><span>Снятие/день</span><b>до 5 000 000 AMD/день</b></li><li><span>Покупки/день</span><b>до 8 000 000 AMD/день</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. 1 500 AMD)</b></li><li><span>Срок действия</span><b>3 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Премиальная World</span><span class='chip'>Исходящий SWIFT</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-soon" data-use="subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇭🇰</span>
+    <div class="offer-headtext">
+      <h3>Гонконг</h3>
+      <span class="offer-sub">MasterCard · Виртуальная</span>
+    </div>
+    <span class="offer-badge soon">Скоро</span>
+  </div>
+  <div class="offer-name">MasterCard Virtual</div>
+  <div class="offer-price">9 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>1 день</b></li><li><span>Валюты</span><b>USD, EUR</b></li><li><span>Активация</span><b>$25 + депозит $25</b></li><li><span>Обслуживание</span><b>$7/мес</b></li><li><span>Комиссия снятия</span><b>Пополнение: 3% USDT / 5% СБП</b></li><li><span>Срок действия</span><b>2 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Самая быстрая выдача</span><span class='chip'>Для онлайн-оплат</span></div>
+  <a class="btn btn-ghost offer-cta" href="order.html">Узнать о наличии</a>
+</article>
+<article class="offer is-soon" data-use="travel subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇹🇷</span>
+    <div class="offer-headtext">
+      <h3>Турция</h3>
+      <span class="offer-sub">MasterCard · Дебетовая</span>
+    </div>
+    <span class="offer-badge soon">Скоро</span>
+  </div>
+  <div class="offer-name">MasterCard Standard (быстрая)</div>
+  <div class="offer-price">19 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>1 день</b></li><li><span>Валюты</span><b>TRY, USD</b></li><li><span>Активация</span><b>$70</b></li><li><span>Обслуживание</span><b>Бесплатно</b></li><li><span>Снятие/день</span><b>50 000 TRY (≈$1 500)/день</b></li><li><span>Покупки/день</span><b>100 000 TRY/день, 1 000 000 TRY/мес</b></li><li><span>Срок действия</span><b>4 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Выдача за 1 день</span></div>
+  <a class="btn btn-ghost offer-cta" href="order.html">Узнать о наличии</a>
+</article>
+<article class="offer is-soon" data-use="subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇺🇸</span>
+    <div class="offer-headtext">
+      <h3>США</h3>
+      <span class="offer-sub">MasterCard · Виртуальная</span>
+    </div>
+    <span class="offer-badge soon">Скоро</span>
+  </div>
+  <div class="offer-name">MasterCard Virtual</div>
+  <div class="offer-price">20 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>1 день</b></li><li><span>Валюты</span><b>USD</b></li><li><span>Активация</span><b>$25 + депозит $25</b></li><li><span>Обслуживание</span><b>$7/мес</b></li><li><span>Комиссия снятия</span><b>Пополнение: 3% USDT / 5% СБП</b></li><li><span>Срок действия</span><b>2 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Карта США для сервисов и подписок</span></div>
+  <a class="btn btn-ghost offer-cta" href="order.html">Узнать о наличии</a>
+</article>
+<article class="offer is-soon" data-use="subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇺🇸</span>
+    <div class="offer-headtext">
+      <h3>США</h3>
+      <span class="offer-sub">Visa · Виртуальная</span>
+    </div>
+    <span class="offer-badge soon">Скоро</span>
+  </div>
+  <div class="offer-name">VISA Virtual</div>
+  <div class="offer-price">20 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>1 день</b></li><li><span>Валюты</span><b>USD</b></li><li><span>Активация</span><b>$25 + депозит $25</b></li><li><span>Обслуживание</span><b>$7/мес</b></li><li><span>Комиссия снятия</span><b>Пополнение: 3% USDT / 5% СБП</b></li><li><span>Срок действия</span><b>2 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Карта США для сервисов и подписок</span></div>
+  <a class="btn btn-ghost offer-cta" href="order.html">Узнать о наличии</a>
+</article></div>
+    <p class="muted small price-note">⚠️ Цены, лимиты и условия приведены по данным партнёров и могут
+    меняться. Актуальные тарифы и доступность карты подтверждаются при оформлении заявки.
+    Рассрочка — от 990 ₽/мес.</p>
+  </div>
+</section>
+
+
+<section id="lead" class="cta-section">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-text">
+        <span class="eyebrow">Заявка онлайн</span>
+        <h2>Поможем выбрать карту</h2>
+        <p class="muted">Не уверены, что подойдёт? Оставьте заявку — подскажем оптимальный вариант под вашу задачу и бюджет.</p>
+        <ul class="cta-points">
+          <li>Удалённо — приезжать не нужно</li>
+          <li>Подберём карту под вашу задачу</li>
+          <li>Рассрочка от 990 ₽/мес</li>
+        </ul>
+      </div>
+      <div class="cta-form">
+        <form class="lead-form" novalidate>
+      <div class="lead-fields">
+        <div class="lead-row">
+        <label>Имя<input name="name" type="text" required placeholder="Как к вам обращаться"></label>
+        <label>Телефон или Telegram<input name="contact" type="text" required placeholder="+7… или @username"></label>
+      </div>
+      <div class="lead-row">
+        <label>Интересует карта<select name="card"><option>Подберите за меня</option><option>Казахстан</option><option>Кыргызстан</option><option>Армения</option><option>Турция</option><option>Таджикистан</option><option>Виртуальная карта (США/Гонконг)</option><option>Премиальная / SWIFT</option></select></label>
+        <label>Email (по желанию)<input name="email" type="email" placeholder="you@example.com"></label>
+      </div>
+      <label class="lead-msg">Комментарий<textarea name="message" rows="3" placeholder="Например: нужна карта для оплаты подписок"></textarea></label>
+        <input type="text" name="_gotcha" class="lead-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      </div>
+      <div class="lead-actions">
+        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        <span class="muted small">Перезвоним и поможем выбрать. Без спама.</span>
+      </div>
+      <p class="lead-success" hidden>✓ Спасибо! Заявка принята — мы свяжемся с вами в ближайшее время.</p>
+    </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="faq" class="faq-section">
+  <div class="container container-narrow">
+    <div class="section-head"><span class="eyebrow">FAQ</span>
+      <h2>Вопросы про карты и оформление</h2>
+      <p class="muted">Не нашли ответ? Напишите нам в Telegram — подскажем.</p></div>
+    <div class="faq-list"><details class="faq-item">
+        <summary>Это легально — россиянину иметь зарубежную карту?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Да. Закон не запрещает гражданам РФ открывать счета и карты в иностранных банках. Об открытии счёта нужно уведомить ФНС в течение месяца, а раз в год подавать отчёт о движении средств (ОДДС). Мы подскажем, как это сделать.</p></div>
+      </details><details class="faq-item">
+        <summary>Нужно ли ехать за границу, чтобы оформить карту?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>В большинстве случаев — нет. Многие карты (виртуальные и часть пластиковых) оформляются удалённо. Если для конкретного банка нужна личная явка, мы предупредим заранее и предложим альтернативу.</p></div>
+      </details><details class="faq-item">
+        <summary>Сколько времени занимает оформление?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Виртуальную карту можно получить за 1 день. Пластиковую — обычно от нескольких дней до пары недель в зависимости от страны и способа доставки.</p></div>
+      </details><details class="faq-item">
+        <summary>Что будет, если банк откажет в открытии счёта?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Мы возвращаем оплату полностью. Вы ничем не рискуете — это наша гарантия.</p></div>
+      </details><details class="faq-item">
+        <summary>Какие карты подойдут для оплаты подписок (Apple, Google, Steam, ChatGPT)?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Подойдут карты Казахстана, Кыргызстана и виртуальные карты США/Гонконга. Они принимаются большинством зарубежных сервисов. Подберём вариант под ваши сервисы.</p></div>
+      </details><details class="faq-item">
+        <summary>Как происходит оплата и есть ли рассрочка?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Оплатить можно удобным способом после подбора карты. Доступна рассрочка от 990 ₽/мес. Все условия озвучиваем заранее.</p></div>
+      </details><details class="faq-item">
+        <summary>Безопасно ли это? Вы просите пароли и коды?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Нет. Мы никогда не запрашиваем пароли, коды из СМС и доступ к вашим российским счетам. Работаем только с официальными банками-партнёрами.</p></div>
+      </details></div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">◈</span>
+        <span class="brand-text">CardsAbroad<small>Зарубежные карты для россиян — 2026</small></span>
+      </a>
+      <p class="muted small">Помогаем россиянам оформить рабочую зарубежную карту — удалённо и с гарантией.</p>
+      <div class="footer-tg"><a class="btn btn-tg btn-sm" href="https://t.me/Razdor_Razdor" rel="noopener" target="_blank"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L3 11l2-2 6.5 1.5L16 5.5c.8-.8 2-1 2.6-.4.6.6.4 1.8-.4 2.6L13.5 12 15 18l-2 2-2.5-6.5z"/></svg><span>Написать в Telegram</span></a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Разделы</h4>
+      <a href="cards.html">Карты и цены</a>
+      <a href="services.html">Услуги</a>
+      <a href="index.html#blog">Блог</a>
+      <a href="about.html">О нас</a>
+      <a href="order.html">Оформить заявку</a>
+    </div>
+    <div class="footer-col">
+      <h4>Популярное</h4>
+      <a href="subscriptions.html">Карта для подписок</a>
+      <a href="kazakhstan.html">Карта Казахстана</a>
+      <a href="cards.html#faq">Частые вопросы</a>
+      <a href="index.html#reviews">Отзывы</a>
+      <a href="index.html#guarantees">Гарантии</a>
+    </div>
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <a href="tel:+74950000000">+7 (495) 000-00-00</a>
+      <a href="mailto:info@cardsabroad.ru">info@cardsabroad.ru</a>
+      <a href="https://t.me/Razdor_Razdor" rel="noopener">Telegram @Razdor_Razdor</a>
+      <a href="https://wa.me/70000000000" rel="noopener">WhatsApp</a>
+      <span class="muted small">Ежедневно 10:00–20:00 (МСК)</span>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p class="muted small">© 2026 CardsAbroad. Информация о картах, ценах и условиях носит
+    справочный характер, актуальные условия уточняйте при оформлении заявки. Не является
+    публичной офертой, юридической или финансовой консультацией.</p>
+  </div>
+</footer>
+<a class="tg-float" href="https://t.me/Razdor_Razdor" rel="noopener" target="_blank" aria-label="Написать в Telegram">
+  <svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L3 11l2-2 6.5 1.5L16 5.5c.8-.8 2-1 2.6-.4.6.6.4 1.8-.4 2.6L13.5 12 15 18l-2 2-2.5-6.5z"/></svg><span>Telegram</span>
+</a>
+<script>
+  window.TG_CFG = { token: "8820770315:AAGNkHBcxv6dGM2g36-3OKOejJsm1KNVFpI", chat: "421969366" };
+
+  (function () {
+    var btn = document.querySelector('.theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+
+  // Мобильное меню (гамбургер).
+  (function () {
+    var t = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!t || !nav) return;
+    t.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      t.classList.toggle('is-open', open);
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open'); t.classList.remove('is-open');
+        t.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
+  // Обработка лид-форм: заявка уходит в Telegram-бот (если настроен), иначе на
+  // data-endpoint, иначе — демо-режим («спасибо»).
+  (function () {
+    function fieldVal(form, name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el ? (el.value || '').trim() : '';
+    }
+    function buildText(form) {
+      var page = document.title;
+      var lines = ['🔔 <b>Новая заявка</b> — CardsAbroad'];
+      var map = [['name','👤 Имя'],['contact','📞 Контакт'],['card','💳 Карта'],
+                 ['email','✉️ Email'],['message','💬 Комментарий']];
+      map.forEach(function (m) {
+        var v = fieldVal(form, m[0]);
+        if (v) lines.push(m[1] + ': ' + v.replace(/[<>]/g, ''));
+      });
+      lines.push('🔗 Страница: ' + page);
+      return lines.join('\n');
+    }
+    var forms = document.querySelectorAll('form.lead-form');
+    forms.forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // honeypot — если бот заполнил скрытое поле, делаем вид, что всё ок.
+        if (fieldVal(form, '_gotcha')) { showOk(); return; }
+        var ok = form.querySelector('.lead-success');
+        var btn = form.querySelector('button[type="submit"]');
+        var endpoint = form.getAttribute('data-endpoint');
+        var cfg = window.TG_CFG || {};
+        function showOk() {
+          form.querySelectorAll('.lead-row, .lead-actions, .lead-fields').forEach(function (el) { el.style.display = 'none'; });
+          if (ok) ok.hidden = false;
+        }
+        if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Отправляем…'; }
+        if (cfg.token && cfg.chat) {
+          fetch('https://api.telegram.org/bot' + cfg.token + '/sendMessage', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: cfg.chat, text: buildText(form), parse_mode: 'HTML', disable_web_page_preview: true })
+          }).then(function () { showOk(); }).catch(function () { showOk(); });
+        } else if (endpoint) {
+          fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+            .then(function () { showOk(); }).catch(function () { showOk(); });
+        } else {
+          showOk();
+        }
+      });
+    });
+  })();
+
+  // Фильтр каталога карт по сценарию использования.
+  (function () {
+    var chips = document.querySelectorAll('[data-filter]');
+    if (!chips.length) return;
+    var cards = document.querySelectorAll('.offer[data-use]');
+    chips.forEach(function (ch) {
+      ch.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('active'); });
+        ch.classList.add('active');
+        var f = ch.getAttribute('data-filter');
+        cards.forEach(function (card) {
+          var use = ' ' + card.getAttribute('data-use') + ' ';
+          card.style.display = (f === 'all' || use.indexOf(' ' + f + ' ') >= 0) ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>

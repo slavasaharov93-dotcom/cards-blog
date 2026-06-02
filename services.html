@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Услуги — CardsAbroad</title>
+<meta name="description" content="Оформление зарубежных карт под ключ: подбор, оформление в банке и доставка.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+
+<script>
+  // Применяем тему до отрисовки, чтобы не было вспышки.
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">◈</span>
+      <span class="brand-text">CardsAbroad<small>Зарубежные карты для россиян — 2026</small></span>
+    </a>
+    <nav class="nav" id="site-nav"><a href="index.html">Главная</a><a href="cards.html">Карты и цены</a><a href="services.html" class="active">Услуги</a><a href="subscriptions.html">Подписки</a><a href="kazakhstan.html">Казахстан</a><a href="index.html#blog">Блог</a><a href="about.html">О нас</a></nav>
+    <div class="header-right">
+      <a class="btn btn-primary btn-sm header-cta" href="order.html">Оформить</a>
+      <button class="theme-toggle" type="button" aria-label="Переключить тему" title="Светлая / тёмная тема">
+        <span class="ic-sun">☀</span><span class="ic-moon">☾</span>
+      </button>
+      <button class="nav-toggle" type="button" aria-label="Меню" aria-controls="site-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main>
+
+<section class="hero hero-sm">
+  <div class="container">
+    <span class="eyebrow">Услуги</span>
+    <h1>Оформление зарубежных карт под ключ</h1>
+    <p class="lead">Берём на себя подбор, оформление в банке и доставку. Вы получаете готовую к работе карту —
+    удалённо и с гарантией возврата при отказе банка.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="order.html">Оставить заявку</a>
+      <a class="btn btn-ghost" href="cards.html">Каталог карт</a>
+    </div>
+  </div>
+</section>
+
+<section class="trust-band">
+  <div class="container trust-inner">
+    <div class="trust-item"><b>Удалённо</b><span>без поездок</span></div>
+    <div class="trust-item"><b>Гарантия возврата</b><span>при отказе банка</span></div>
+    <div class="trust-item"><b>Рассрочка</b><span>от 990 ₽/мес</span></div>
+    <div class="trust-item"><b>Сопровождение</b><span>на каждом шаге</span></div>
+  </div>
+</section>
+
+
+<section class="steps-section">
+  <div class="container">
+    <div class="section-head"><h2>Как это работает</h2>
+      <p class="muted">От заявки до готовой карты — четыре шага.</p></div>
+    <div class="steps-grid"><div class="step">
+        <span class="step-num">1</span>
+        <h3>Заявка</h3>
+        <p>Оставляете заявку на сайте или в мессенджере — мы перезваниваем и подбираем карту под задачу.</p>
+      </div><div class="step">
+        <span class="step-num">2</span>
+        <h3>Оплата</h3>
+        <p>Выбираете карту и оплачиваете удобным способом, доступна рассрочка от 990 ₽/мес.</p>
+      </div><div class="step">
+        <span class="step-num">3</span>
+        <h3>Оформление</h3>
+        <p>Оформляем карту в банке-партнёре. При отказе банка возвращаем деньги.</p>
+      </div><div class="step">
+        <span class="step-num">4</span>
+        <h3>Получение</h3>
+        <p>Виртуальная — за 1 день; пластик — доставка или самовывоз. Карта готова к работе.</p>
+      </div></div>
+  </div>
+</section>
+
+<section class="usecases-section">
+  <div class="container">
+    <div class="section-head"><h2>Для каких задач</h2>
+      <p class="muted">Подбираем карту под конкретную цель.</p></div>
+    <div class="use-grid"><div class="use-card">
+        <h3>Подписки и онлайн</h3>
+        <p>Оплата Apple, Google, Steam, Netflix, ИИ-сервисов и других подписок, которые не принимают карты РФ.</p>
+        <a href="cards.html">Подобрать карту →</a>
+      </div><div class="use-card">
+        <h3>Путешествия</h3>
+        <p>Оплата отелей, кафе и аренды авто за границей, снятие наличных и выгодная конвертация.</p>
+        <a href="cards.html">Подобрать карту →</a>
+      </div><div class="use-card">
+        <h3>SWIFT-переводы</h3>
+        <p>Карты со счётом и возможностью исходящих SWIFT-переводов для крупных операций.</p>
+        <a href="cards.html">Подобрать карту →</a>
+      </div><div class="use-card">
+        <h3>Фриланс и доход</h3>
+        <p>Приём оплаты от иностранных заказчиков и работа с платёжными системами.</p>
+        <a href="cards.html">Подобрать карту →</a>
+      </div></div>
+  </div>
+</section>
+
+<section class="why-section">
+  <div class="container two-col">
+    <div class="why-text prose">
+      <h2>Почему оформляют через нас</h2>
+      <ul>
+        <li><strong>Экономия времени.</strong> Не нужно разбираться в требованиях банков и ехать в другую страну.</li>
+        <li><strong>Прозрачные цены.</strong> Стоимость карты, активация и обслуживание известны заранее.</li>
+        <li><strong>Поддержка в мессенджерах.</strong> Telegram и WhatsApp — отвечаем на вопросы до и после оформления.</li>
+        <li><strong>Гибкая доставка.</strong> Виртуальная карта — за день, пластик — курьером или самовывозом.</li>
+      </ul>
+    </div>
+    <div class="why-photos">
+      <figure class="flat-img"><img src="assets/img/support.jpg" alt="Поддержка клиентов в мессенджерах" loading="lazy" decoding="async"><figcaption>Поддержка клиентов в мессенджерах · Фото: <a href='https://unsplash.com/' rel='noopener'>Unsplash</a></figcaption></figure>
+      <figure class="flat-img"><img src="assets/img/delivery.jpg" alt="Доставка карты курьером" loading="lazy" decoding="async"><figcaption>Доставка карты курьером · Фото: <a href='https://unsplash.com/' rel='noopener'>Unsplash</a></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+
+<section id="lead" class="cta-section">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-text">
+        <span class="eyebrow">Заявка онлайн</span>
+        <h2>Оформить карту</h2>
+        <p class="muted">Оставьте заявку — перезвоним, подберём карту и рассчитаем стоимость с учётом рассрочки.</p>
+        <ul class="cta-points">
+          <li>Удалённо — приезжать не нужно</li>
+          <li>Подберём карту под вашу задачу</li>
+          <li>Рассрочка от 990 ₽/мес</li>
+        </ul>
+      </div>
+      <div class="cta-form">
+        <form class="lead-form" novalidate>
+      <div class="lead-fields">
+        <div class="lead-row">
+        <label>Имя<input name="name" type="text" required placeholder="Как к вам обращаться"></label>
+        <label>Телефон или Telegram<input name="contact" type="text" required placeholder="+7… или @username"></label>
+      </div>
+      <div class="lead-row">
+        <label>Интересует карта<select name="card"><option>Подберите за меня</option><option>Казахстан</option><option>Кыргызстан</option><option>Армения</option><option>Турция</option><option>Таджикистан</option><option>Виртуальная карта (США/Гонконг)</option><option>Премиальная / SWIFT</option></select></label>
+        <label>Email (по желанию)<input name="email" type="email" placeholder="you@example.com"></label>
+      </div>
+      <label class="lead-msg">Комментарий<textarea name="message" rows="3" placeholder="Например: нужна карта для оплаты подписок"></textarea></label>
+        <input type="text" name="_gotcha" class="lead-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      </div>
+      <div class="lead-actions">
+        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        <span class="muted small">Перезвоним и поможем выбрать. Без спама.</span>
+      </div>
+      <p class="lead-success" hidden>✓ Спасибо! Заявка принята — мы свяжемся с вами в ближайшее время.</p>
+    </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">◈</span>
+        <span class="brand-text">CardsAbroad<small>Зарубежные карты для россиян — 2026</small></span>
+      </a>
+      <p class="muted small">Помогаем россиянам оформить рабочую зарубежную карту — удалённо и с гарантией.</p>
+      <div class="footer-tg"><a class="btn btn-tg btn-sm" href="https://t.me/Razdor_Razdor" rel="noopener" target="_blank"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L3 11l2-2 6.5 1.5L16 5.5c.8-.8 2-1 2.6-.4.6.6.4 1.8-.4 2.6L13.5 12 15 18l-2 2-2.5-6.5z"/></svg><span>Написать в Telegram</span></a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Разделы</h4>
+      <a href="cards.html">Карты и цены</a>
+      <a href="services.html">Услуги</a>
+      <a href="index.html#blog">Блог</a>
+      <a href="about.html">О нас</a>
+      <a href="order.html">Оформить заявку</a>
+    </div>
+    <div class="footer-col">
+      <h4>Популярное</h4>
+      <a href="subscriptions.html">Карта для подписок</a>
+      <a href="kazakhstan.html">Карта Казахстана</a>
+      <a href="cards.html#faq">Частые вопросы</a>
+      <a href="index.html#reviews">Отзывы</a>
+      <a href="index.html#guarantees">Гарантии</a>
+    </div>
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <a href="tel:+74950000000">+7 (495) 000-00-00</a>
+      <a href="mailto:info@cardsabroad.ru">info@cardsabroad.ru</a>
+      <a href="https://t.me/Razdor_Razdor" rel="noopener">Telegram @Razdor_Razdor</a>
+      <a href="https://wa.me/70000000000" rel="noopener">WhatsApp</a>
+      <span class="muted small">Ежедневно 10:00–20:00 (МСК)</span>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p class="muted small">© 2026 CardsAbroad. Информация о картах, ценах и условиях носит
+    справочный характер, актуальные условия уточняйте при оформлении заявки. Не является
+    публичной офертой, юридической или финансовой консультацией.</p>
+  </div>
+</footer>
+<a class="tg-float" href="https://t.me/Razdor_Razdor" rel="noopener" target="_blank" aria-label="Написать в Telegram">
+  <svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5L3 11l2-2 6.5 1.5L16 5.5c.8-.8 2-1 2.6-.4.6.6.4 1.8-.4 2.6L13.5 12 15 18l-2 2-2.5-6.5z"/></svg><span>Telegram</span>
+</a>
+<script>
+  window.TG_CFG = { token: "8820770315:AAGNkHBcxv6dGM2g36-3OKOejJsm1KNVFpI", chat: "421969366" };
+
+  (function () {
+    var btn = document.querySelector('.theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+
+  // Мобильное меню (гамбургер).
+  (function () {
+    var t = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!t || !nav) return;
+    t.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      t.classList.toggle('is-open', open);
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open'); t.classList.remove('is-open');
+        t.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
+  // Обработка лид-форм: заявка уходит в Telegram-бот (если настроен), иначе на
+  // data-endpoint, иначе — демо-режим («спасибо»).
+  (function () {
+    function fieldVal(form, name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el ? (el.value || '').trim() : '';
+    }
+    function buildText(form) {
+      var page = document.title;
+      var lines = ['🔔 <b>Новая заявка</b> — CardsAbroad'];
+      var map = [['name','👤 Имя'],['contact','📞 Контакт'],['card','💳 Карта'],
+                 ['email','✉️ Email'],['message','💬 Комментарий']];
+      map.forEach(function (m) {
+        var v = fieldVal(form, m[0]);
+        if (v) lines.push(m[1] + ': ' + v.replace(/[<>]/g, ''));
+      });
+      lines.push('🔗 Страница: ' + page);
+      return lines.join('\n');
+    }
+    var forms = document.querySelectorAll('form.lead-form');
+    forms.forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // honeypot — если бот заполнил скрытое поле, делаем вид, что всё ок.
+        if (fieldVal(form, '_gotcha')) { showOk(); return; }
+        var ok = form.querySelector('.lead-success');
+        var btn = form.querySelector('button[type="submit"]');
+        var endpoint = form.getAttribute('data-endpoint');
+        var cfg = window.TG_CFG || {};
+        function showOk() {
+          form.querySelectorAll('.lead-row, .lead-actions, .lead-fields').forEach(function (el) { el.style.display = 'none'; });
+          if (ok) ok.hidden = false;
+        }
+        if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Отправляем…'; }
+        if (cfg.token && cfg.chat) {
+          fetch('https://api.telegram.org/bot' + cfg.token + '/sendMessage', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: cfg.chat, text: buildText(form), parse_mode: 'HTML', disable_web_page_preview: true })
+          }).then(function () { showOk(); }).catch(function () { showOk(); });
+        } else if (endpoint) {
+          fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+            .then(function () { showOk(); }).catch(function () { showOk(); });
+        } else {
+          showOk();
+        }
+      });
+    });
+  })();
+
+  // Фильтр каталога карт по сценарию использования.
+  (function () {
+    var chips = document.querySelectorAll('[data-filter]');
+    if (!chips.length) return;
+    var cards = document.querySelectorAll('.offer[data-use]');
+    chips.forEach(function (ch) {
+      ch.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('active'); });
+        ch.classList.add('active');
+        var f = ch.getAttribute('data-filter');
+        cards.forEach(function (card) {
+          var use = ' ' + card.getAttribute('data-use') + ' ';
+          card.style.display = (f === 'all' || use.indexOf(' ' + f + ' ') >= 0) ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
