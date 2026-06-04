@@ -339,26 +339,29 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
                  ("О нас", f"{base}about.html", "about")]
     links = [f'<a href="{href}"{" class=\"active\"" if active == key else ""}>{label}</a>'
              for label, href, key in nav_items]
-    # Выпадающее меню: страны + платёжные системы (вместо отдельного пункта «Казахстан»).
-    nav_dd = (
+    # Два выпадающих пункта: «Страны» и «Платёжные системы».
+    _chevron = ('<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+                'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>')
+    dd_countries = (
         '<div class="nav-dd">'
-        '<button type="button" class="nav-dd-toggle" aria-expanded="false">Страны и карты '
-        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
-        'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
-        '</button>'
+        f'<button type="button" class="nav-dd-toggle" aria-expanded="false">Страны {_chevron}</button>'
         '<div class="nav-dd-menu">'
-        '<span class="nav-dd-head">По стране</span>'
         f'<a href="{base}kazakhstan.html">🇰🇿 Казахстан</a>'
         f'<a href="{base}kyrgyzstan.html">🇰🇬 Кыргызстан</a>'
         f'<a href="{base}tajikistan.html">🇹🇯 Таджикистан</a>'
-        '<span class="nav-dd-head">Платёжная система</span>'
+        '</div></div>'
+    )
+    dd_systems = (
+        '<div class="nav-dd">'
+        f'<button type="button" class="nav-dd-toggle" aria-expanded="false">Платёжные системы {_chevron}</button>'
+        '<div class="nav-dd-menu">'
         f'<a href="{base}mastercard.html">Mastercard</a>'
         f'<a href="{base}visa.html">Visa</a>'
         f'<a href="{base}unionpay.html">UnionPay</a>'
         '</div></div>'
     )
-    # Порядок: Главная, Карты, Услуги, Подписки, [выпадашка], Блог, О нас
-    nav = "".join(links[:4]) + nav_dd + "".join(links[4:])
+    # Порядок: Главная, Карты, Услуги, Подписки, [Страны], [Платёжные системы], Блог, О нас
+    nav = "".join(links[:4]) + dd_countries + dd_systems + "".join(links[4:])
     chatbot = chatbot_widget()
     return f"""<!DOCTYPE html>
 <html lang="ru">
