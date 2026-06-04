@@ -353,7 +353,7 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
     )
     dd_systems = (
         '<div class="nav-dd">'
-        f'<button type="button" class="nav-dd-toggle" aria-expanded="false">Платёжные системы {_chevron}</button>'
+        f'<button type="button" class="nav-dd-toggle" aria-expanded="false">Системы {_chevron}</button>'
         '<div class="nav-dd-menu">'
         f'<a href="{base}mastercard.html">Mastercard</a>'
         f'<a href="{base}visa.html">Visa</a>'
@@ -1008,7 +1008,19 @@ INDEX_SCRIPTS = """
     var resultEl = document.getElementById('quiz-result');
     var rowsEl = document.getElementById('calc-rows');
     var rateEl = document.getElementById('calc-rate');
+    var cardSel = document.getElementById('calc-card');
+    var rateSrc = document.getElementById('calc-rate-src');
     if (!resultEl || !rowsEl) return;
+
+    // Выпадающий список карт в калькуляторе — считать можно для любой карты.
+    if (cardSel && !cardSel.options.length) {
+      CARDS.forEach(function (c, i) {
+        var o = document.createElement('option');
+        o.value = i; o.textContent = c.c + ' — ' + c.n;
+        cardSel.appendChild(o);
+      });
+      cardSel.addEventListener('change', function () { selected = CARDS[+cardSel.value]; renderCalc(); });
+    }
 
     function fmt(n) { return Math.round(n).toLocaleString('ru-RU'); }
     function flagImg(card, size) {
@@ -1032,6 +1044,7 @@ INDEX_SCRIPTS = """
       var ranked = pick();
       var best = ranked[0];
       selected = best;
+      if (cardSel) cardSel.value = CARDS.indexOf(best);
       var alts = ranked.slice(1, 3);
       var html =
         '<div class="quiz-best">' +
@@ -1055,6 +1068,7 @@ INDEX_SCRIPTS = """
       resultEl.querySelectorAll('.quiz-alt').forEach(function (b) {
         b.addEventListener('click', function () {
           selected = CARDS[+b.getAttribute('data-i')];
+          if (cardSel) cardSel.value = b.getAttribute('data-i');
           renderCalc();
           document.getElementById('calc-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
@@ -1089,8 +1103,16 @@ INDEX_SCRIPTS = """
         });
       });
     });
-    rateEl.addEventListener('input', renderCalc);
+    rateEl.addEventListener('input', function () { if (rateSrc) rateSrc.textContent = 'свой курс'; renderCalc(); });
     renderResult();
+    // Официальный курс $ ЦБ РФ — подтягиваем автоматически (если не вышло, остаётся ручной).
+    fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var v = d && d.Valute && d.Valute.USD && d.Valute.USD.Value;
+        if (v) { rateEl.value = Math.round(v); if (rateSrc) rateSrc.textContent = 'офиц. ЦБ'; renderCalc(); }
+      })
+      .catch(function () {});
   })();
 
   // ---------- 3D-карта в hero: наклон за курсором + переворот по клику ----------
@@ -1184,11 +1206,6 @@ def build_index(articles, cards_data):
           </div>
         </div>
       </div>
-      <div class="hero-chips">
-        <div class="hero-chip hero-chip-1"><b>от {fmt_price(min_price)} ₽</b><span>цена карты</span></div>
-        <div class="hero-chip hero-chip-2"><b>{countries} стран</b><span>на выбор</span></div>
-        <div class="hero-chip hero-chip-3"><b>от 1 дня</b><span>срок выпуска</span></div>
-      </div>
     </div>
   </div>
 </section>
@@ -1253,11 +1270,12 @@ def build_index(articles, cards_data):
       <div class="calc-head">
         <h3>Стоимость владения — считаем честно</h3>
         <div class="calc-controls">
+          <select id="calc-card" class="calc-card" aria-label="Выберите карту для расчёта"></select>
           <div class="quiz-opts" data-q="term">
             <button type="button" class="quiz-opt active" data-v="1">1 год</button>
             <button type="button" class="quiz-opt" data-v="2">2 года</button>
           </div>
-          <label class="calc-rate">Курс $&nbsp;<input type="number" id="calc-rate" value="95" min="1" step="1" inputmode="numeric">&nbsp;₽</label>
+          <label class="calc-rate">Курс $&nbsp;<input type="number" id="calc-rate" value="92" min="1" step="1" inputmode="numeric">&nbsp;₽ <span class="muted small" id="calc-rate-src"></span></label>
         </div>
       </div>
       <div class="calc-rows" id="calc-rows"></div>
