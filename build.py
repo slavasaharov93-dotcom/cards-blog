@@ -335,13 +335,30 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
                  ("Карты и цены", f"{base}cards.html", "cards"),
                  ("Услуги", f"{base}services.html", "services"),
                  ("Подписки", f"{base}subscriptions.html", "subscriptions"),
-                 ("Казахстан", f"{base}kazakhstan.html", "kazakhstan"),
                  ("Блог", f"{base}index.html#blog", "blog"),
                  ("О нас", f"{base}about.html", "about")]
-    nav = "".join(
-        f'<a href="{href}"{" class=\"active\"" if active == key else ""}>{label}</a>'
-        for label, href, key in nav_items
+    links = [f'<a href="{href}"{" class=\"active\"" if active == key else ""}>{label}</a>'
+             for label, href, key in nav_items]
+    # Выпадающее меню: страны + платёжные системы (вместо отдельного пункта «Казахстан»).
+    nav_dd = (
+        '<div class="nav-dd">'
+        '<button type="button" class="nav-dd-toggle" aria-expanded="false">Страны и карты '
+        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
+        '</button>'
+        '<div class="nav-dd-menu">'
+        '<span class="nav-dd-head">По стране</span>'
+        f'<a href="{base}kazakhstan.html">🇰🇿 Казахстан</a>'
+        f'<a href="{base}kyrgyzstan.html">🇰🇬 Кыргызстан</a>'
+        f'<a href="{base}tajikistan.html">🇹🇯 Таджикистан</a>'
+        '<span class="nav-dd-head">Платёжная система</span>'
+        f'<a href="{base}mastercard.html">Mastercard</a>'
+        f'<a href="{base}visa.html">Visa</a>'
+        f'<a href="{base}unionpay.html">UnionPay</a>'
+        '</div></div>'
     )
+    # Порядок: Главная, Карты, Услуги, Подписки, [выпадашка], Блог, О нас
+    nav = "".join(links[:4]) + nav_dd + "".join(links[4:])
     chatbot = chatbot_widget()
     return f"""<!DOCTYPE html>
 <html lang="ru">
@@ -355,7 +372,9 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{base}styles.css">
+<link rel="stylesheet" href="{base}custom.css">
 <script src="{base}site.js" defer></script>
+<script src="{base}custom.js" defer></script>
 {extra_head}
 <script>
   // Применяем тему до отрисовки, чтобы не было вспышки.
@@ -1793,9 +1812,10 @@ def main():
     img_src = ASSETS_DIR / "img"
     if img_src.is_dir():
         shutil.copytree(img_src, DIST / "assets" / "img")
-    # site.js — общие интерактивные улучшения (флип карточек каталога, оглавление статей)
-    if (ASSETS_DIR / "site.js").exists():
-        shutil.copyfile(ASSETS_DIR / "site.js", DIST / "site.js")
+    # site.js (от дизайнера) + наш custom.css/custom.js (слой поверх дизайна)
+    for asset in ("site.js", "custom.css", "custom.js"):
+        if (ASSETS_DIR / asset).exists():
+            shutil.copyfile(ASSETS_DIR / asset, DIST / asset)
     # Статические страницы (Mastercard/Visa/UnionPay) + robots/sitemap.
     # В HTML подставляем токен Telegram при сборке (в исходниках — плейсхолдеры).
     static_dir = ROOT / "static"
