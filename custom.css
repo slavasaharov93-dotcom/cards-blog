@@ -63,3 +63,19 @@
   padding: 8px 12px; font: inherit; font-size: .92rem; cursor: pointer; max-width: 100%;
 }
 .calc-card:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+
+/* ── Мега-меню «Карты» ── */
+.nav-mega-menu { min-width: 564px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 24px; }
+.nav-mega-col { display: flex; flex-direction: column; gap: 2px; }
+.nav-flag { border-radius: 2px; margin-right: 8px; vertical-align: -2px; box-shadow: 0 0 0 1px rgba(255,255,255,.08); }
+@media (max-width: 980px) {
+  .nav-mega-menu { min-width: 0; grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ── SEO-блок под каталогом карт ── */
+.seo-section { padding: 6px 0 38px; }
+.seo-block h2 { margin: 0 0 14px; }
+.seo-block h3 { margin: 22px 0 8px; }
+.seo-block p { color: var(--ink-soft); line-height: 1.75; margin: 0 0 14px; }
+.seo-block p:last-child { margin-bottom: 0; }
+.seo-block ul { color: var(--ink-soft); line-height: 1.7; margin: 0 0 14px; padding-left: 20px; }

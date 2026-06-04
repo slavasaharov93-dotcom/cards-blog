@@ -3,32 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Карта UnionPay для россиян в 2026 — где работает и какие есть альтернативы — CardsAbroad</title>
-<meta name="description" content="Карта UnionPay для россиян в 2026: где реально работает китайская платёжная система, какие у неё ограничения и почему для подписок и путешествий чаще выгоднее Visa или Mastercard зарубежного банка. Честный гайд и подбор альтернативы.">
+<title>Карта UnionPay для россиян в 2026 — оформление удалённо — CardsAbroad</title>
+<meta name="description" content="Карта UnionPay для россиян в 2026: где реально работает, ограничения и почему Visa или Mastercard зарубежного банка надёжнее. Подбор и оформление.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="custom.css">
+<script src="site.js" defer></script>
+<script src="custom.js" defer></script>
 
 <script>
   // Применяем тему до отрисовки, чтобы не было вспышки.
   (function () {
     try {
       var t = localStorage.getItem('theme');
-      if (!t) t = 'dark';
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     } catch (e) {}
   })();
 </script>
-<link rel="canonical" href="https://slavasaharov93-dotcom.github.io/cards-blog/unionpay.html">
-<meta property="og:title" content="Карта UnionPay для россиян в 2026 — где работает и какие есть альтернативы — CardsAbroad">
-<meta property="og:description" content="Карта UnionPay для россиян в 2026: где реально работает китайская платёжная система, какие у неё ограничения и почему для подписок и путешествий чаще выгоднее Visa или Mastercard зарубежного банка. Честный гайд и подбор альтернативы.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://slavasaharov93-dotcom.github.io/cards-blog/unionpay.html">
-<meta property="og:image" content="https://slavasaharov93-dotcom.github.io/cards-blog/assets/img/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Можно ли оформить карту UnionPay через CardsAbroad?", "acceptedAnswer": {"@type": "Answer", "text": "Сейчас карт UnionPay в нашем каталоге нет — мы сознательно не предлагаем продукты, в которых не уверены. Под большинство задач (подписки, путешествия, онлайн-оплаты) надёжнее работают Visa и Mastercard зарубежных банков — их мы оформляем удалённо и с гарантией возврата при отказе банка. Если вам принципиально нужна UnionPay, напишите нам — обсудим задачу и честно скажем, есть ли смысл."}}, {"@type": "Question", "name": "Где UnionPay реально работает за границей?", "acceptedAnswer": {"@type": "Answer", "text": "Стабильнее всего — в Китае и материковой Азии (Гонконг, Таиланд, Вьетнам, Южная Корея, Япония — в крупных сетях). В Турции, ОАЭ и Европе приём фрагментарный: часть банкоматов и терминалов карты UnionPay российских банков не обслуживает, а онлайн-сервисы часто их отклоняют. Перед поездкой стоит проверять приём по конкретной стране и банку-эмитенту."}}, {"@type": "Question", "name": "Подойдёт ли UnionPay для оплаты подписок — Apple, Google, ChatGPT, Netflix?", "acceptedAnswer": {"@type": "Answer", "text": "В большинстве случаев нет. Западные онлайн-сервисы ориентированы на Visa и Mastercard, и карты UnionPay (особенно выпущенные российскими банками) там часто не проходят. Для подписок надёжнее виртуальная или пластиковая Visa/Mastercard зарубежного банка — такие карты есть в нашем каталоге от 9 990 ₽."}}, {"@type": "Question", "name": "Что выбрать вместо UnionPay для поездок и онлайн-оплат?", "acceptedAnswer": {"@type": "Answer", "text": "Для путешествий — пластиковую Visa Кыргызстана или Таджикистана либо Mastercard Казахстана: они принимаются в 150+ странах. Для онлайн-оплат и подписок — виртуальную карту США или Гонконга с выпуском за 1 день. Оставьте заявку — подберём вариант под вашу задачу и бюджет."}}]}</script>
 </head>
 <body>
 <header class="site-header">
@@ -37,7 +32,7 @@
       <span class="brand-mark">◈</span>
       <span class="brand-text">CardsAbroad<small>Зарубежные карты для россиян — 2026</small></span>
     </a>
-    <nav class="nav" id="site-nav"><a href="index.html">Главная</a><a href="cards.html">Карты и цены</a><a href="services.html">Услуги</a><a href="subscriptions.html">Подписки</a><a href="kazakhstan.html">Казахстан</a><a href="index.html#blog">Блог</a><a href="about.html">О нас</a></nav>
+    <nav class="nav" id="site-nav"><a href="index.html">Главная</a><div class="nav-dd nav-mega"><button type="button" class="nav-dd-toggle" aria-expanded="false">Карты <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav-dd-menu nav-mega-menu"><div class="nav-mega-col"><span class="nav-dd-head">Страны</span><a href="kazakhstan.html"><img src="https://flagcdn.com/kz.svg" alt="" width="18" class="nav-flag">Казахстан</a><a href="kyrgyzstan.html"><img src="https://flagcdn.com/kg.svg" alt="" width="18" class="nav-flag">Кыргызстан</a><a href="tajikistan.html"><img src="https://flagcdn.com/tj.svg" alt="" width="18" class="nav-flag">Таджикистан</a></div><div class="nav-mega-col"><span class="nav-dd-head">Платёжные системы</span><a href="visa.html">Visa</a><a href="mastercard.html">Mastercard</a><a href="unionpay.html">UnionPay</a></div><div class="nav-mega-col"><span class="nav-dd-head">Инструменты</span><a href="cards.html">Весь каталог</a><a href="index.html#quiz">Подобрать карту</a><a href="index.html#calc-wrap">Стоимость владения</a></div></div></div><a href="services.html">Услуги</a><a href="subscriptions.html">Подписки</a><a href="index.html#blog">Блог</a><a href="about.html">О нас</a></nav>
     <div class="header-right">
       <a class="btn btn-primary btn-sm header-cta" href="order.html">Оформить</a>
       <button class="theme-toggle" type="button" aria-label="Переключить тему" title="Светлая / тёмная тема">
@@ -55,40 +50,128 @@
   <div class="container">
     <span class="eyebrow">Платёжная система UnionPay · Гайд</span>
     <h1>Карта UnionPay для россиян в 2026</h1>
-    <p class="lead">UnionPay — крупнейшая китайская платёжная система, и после ухода Visa и Mastercard
-    из России о ней вспоминают в первую очередь. Но на практике её приём за пределами Азии
-    нестабилен, а онлайн-сервисы такие карты часто отклоняют. В этом гайде честно разбираем,
-    где UnionPay действительно работает, какие у неё ограничения для россиян и когда выгоднее
-    взять Visa или Mastercard зарубежного банка.</p>
+    <p class="lead">UnionPay — крупнейшая китайская платёжная система, о которой вспоминают после ухода Visa и Mastercard из России. Но её приём за пределами Азии нестабилен, а онлайн-сервисы такие карты часто отклоняют. Честно разбираем, где UnionPay работает, какие у неё ограничения и когда выгоднее взять Visa или Mastercard зарубежного банка.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#lead">Подобрать альтернативу</a>
-      <a class="btn btn-ghost" href="cards.html">Каталог карт</a>
+      <a class="btn btn-primary" href="index.html#quiz">Подобрать альтернативу</a>
+      <a class="btn btn-ghost" href="cards.html">Все карты</a>
     </div>
   </div>
 </section>
 
-
-<section class="usecases-section">
+<section class="offers-section">
   <div class="container">
-    <div class="section-head"><h2>UnionPay в 2026: что нужно знать</h2>
-      <p class="muted">Коротко о том, где система работает, а где подведёт.</p></div>
-    <div class="use-grid"><div class="use-card"><span class="info-ic"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></span>
-        <h3>Где работает уверенно</h3><p>Китай и материковая Азия: Гонконг, Таиланд, Вьетнам, Южная Корея. Там UnionPay — основная или хорошо поддерживаемая система.</p></div><div class="use-card"><span class="info-ic"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 9.5h18M6.5 14.5h4"/></svg></span>
-        <h3>Где приём частичный</h3><p>Турция, ОАЭ, отдельные страны Европы: часть банкоматов и терминалов карты принимает, часть — нет, особенно выпущенные российскими банками.</p></div><div class="use-card"><span class="info-ic"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2.5"/><path d="M10 8l5 3-5 3z"/><path d="M8 21h8"/></svg></span>
-        <h3>Слабое место — онлайн</h3><p>Apple, Google, Steam, ChatGPT, Netflix и большинство западных сервисов ориентированы на Visa/Mastercard — UnionPay там обычно не проходит.</p></div><div class="use-card"><span class="info-ic"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-        <h3>Что вместо UnionPay</h3><p>Visa и Mastercard зарубежных банков: принимаются в 150+ странах и в онлайн-сервисах. В нашем каталоге — от 9 990 ₽, оформление удалённо.</p></div></div>
+    <div class="section-head section-head-row">
+      <div><h2>Надёжные альтернативы UnionPay</h2><p class="muted">Карты Visa и Mastercard зарубежных банков — стабильный приём по всему миру и в онлайне.</p></div>
+      <a class="btn btn-ghost btn-sm" href="cards.html">Весь каталог →</a>
+    </div>
+    <div class="offers-grid"><article class="offer is-popular" data-use="subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇰🇿</span>
+    <div class="offer-headtext">
+      <h3>Казахстан</h3>
+      <span class="offer-sub">MasterCard · Дебетовая</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">MasterCard Standard</div>
+  <div class="offer-price">14 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>5 дней</b></li><li><span>Валюты</span><b>USD</b></li><li><span>Активация</span><b>Бесплатно (доставка 20 000 ₸)</b></li><li><span>Обслуживание</span><b>eResidency $120 (1-й год), далее $499</b></li><li><span>Снятие/день</span><b>Без заявленных лимитов</b></li><li><span>Покупки/день</span><b>Без заявленных лимитов</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Нужна казахстанская SIM-карта</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-popular" data-use="subscribe travel">
+  <div class="offer-head">
+    <span class="offer-flag">🇹🇯</span>
+    <div class="offer-headtext">
+      <h3>Таджикистан</h3>
+      <span class="offer-sub">Visa · Дебетовая</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">VISA Gold</div>
+  <div class="offer-price">21 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>3 дня</b></li><li><span>Активация</span><b>$35</b></li><li><span>Обслуживание</span><b>$2/мес</b></li><li><span>Снятие/день</span><b>$5 000/день</b></li><li><span>Покупки/день</span><b>$10 000/день (онлайн)</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $3)</b></li><li><span>Срок действия</span><b>3 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Пополнение: ВТБ, Сбер, Газпромбанк, МТС Банк, Т-Банк, ЮMoney</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-popular" data-use="travel subscribe">
+  <div class="offer-head">
+    <span class="offer-flag">🇰🇬</span>
+    <div class="offer-headtext">
+      <h3>Кыргызстан</h3>
+      <span class="offer-sub">Visa · Дебетовая / Кредитная</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">VISA мультивалютная (Gold/Infinite)</div>
+  <div class="offer-price">32 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>7–17 дней</b></li><li><span>Валюты</span><b>USD</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>$20/год</b></li><li><span>Снятие/день</span><b>$6 000/день</b></li><li><span>Покупки/день</span><b>$6 000/день</b></li><li><span>Комиссия снятия</span><b>1% (мин. 250 сом / $3)</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Низкая годовая плата</span><span class='chip'>Выбор дебет/кредит</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-popular" data-use="travel freelance">
+  <div class="offer-head">
+    <span class="offer-flag">🇰🇬</span>
+    <div class="offer-headtext">
+      <h3>Кыргызстан</h3>
+      <span class="offer-sub">Visa · Кредитная</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">VISA Credit (Platinum/Signature)</div>
+  <div class="offer-price">35 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>14 дней</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>$150/год</b></li><li><span>Снятие/день</span><b>Без лимита</b></li><li><span>Покупки/день</span><b>Без лимита</b></li><li><span>Комиссия снятия</span><b>1% (мин. $2)</b></li><li><span>Срок действия</span><b>5 лет</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Без лимитов</span><span class='chip'>Подходит для аренды авто (auto-rental)</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article>
+<article class="offer is-popular" data-use="swift freelance">
+  <div class="offer-head">
+    <span class="offer-flag">🌍</span>
+    <div class="offer-headtext">
+      <h3>Международный банк</h3>
+      <span class="offer-sub">Visa · Кредитная</span>
+    </div>
+    <span class="offer-badge hot">Хит</span>
+  </div>
+  <div class="offer-name">VISA (Platinum/Signature)</div>
+  <div class="offer-price">64 990 ₽</div>
+  <ul class="offer-specs"><li><span>Срок выпуска</span><b>21 день</b></li><li><span>Валюты</span><b>Мультивалютная</b></li><li><span>Активация</span><b>Бесплатно</b></li><li><span>Обслуживание</span><b>$22/мес или $220/год</b></li><li><span>Снятие/день</span><b>$18 000/день, $55 000/мес</b></li><li><span>Покупки/день</span><b>$36 000/день</b></li><li><span>Комиссия снятия</span><b>1,5% (мин. $3)</b></li><li><span>Срок действия</span><b>4 года</b></li></ul>
+  <div class="offer-feats"><span class='chip'>Высокие лимиты</span><span class='chip'>Мультивалютный счёт</span><span class='chip'>Исходящий SWIFT</span></div>
+  <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
+</article></div>
+  </div>
+</section>
+
+<section class="seo-section">
+  <div class="container container-narrow seo-block">
+    <h2>Где работает UnionPay и чем её заменить</h2>
+    
+<p>UnionPay — крупнейшая китайская платёжная система, и после ухода Visa и Mastercard из России о ней вспоминают в первую очередь. На практике же приём UnionPay за пределами Азии нестабилен: в Европе и США карту часто не принимают в офлайн-магазинах, а зарубежные онлайн-сервисы (подписки, маркетплейсы, бронирования) нередко её отклоняют.</p>
+<p>UnionPay действительно полезна в Китае и ряде стран Азии, но как универсальное решение для оплаты подписок, путешествий и онлайн-сервисов она уступает. Для стабильного приёма по всему миру надёжнее карта Visa или Mastercard, выпущенная зарубежным банком, — её принимают там же, где работали привычные российские карты до 2022 года.</p>
+<p>Если вам нужна рабочая карта для зарубежных платежей, мы поможем подобрать подходящую Visa или Mastercard под вашу задачу и бюджет — удалённо и с гарантией возврата при отказе банка.</p>
+
   </div>
 </section>
 
 
-<section class="usecases-section">
+<section id="guarantees" class="guarantees-section">
   <div class="container">
-    <div class="section-head"><h2>Куда смотреть дальше</h2>
-      <p class="muted">В каталоге CardsAbroad сейчас нет карт UnionPay — зато есть проверенные Visa и Mastercard под те же задачи.</p></div>
-    <div class="use-grid"><a class="use-card" href="visa.html"><span class="info-ic"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 9.5h18M6.5 14.5h4"/></svg></span>
-        <h3>Карта Visa</h3><p>Visa Таджикистана, Кыргызстана, Армении и виртуальная США — от 20 990 ₽, выпуск от 1 дня.</p></a><a class="use-card" href="mastercard.html"><span class="info-ic"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h5a4 4 0 0 1 0 8H8M8 4v16M5 12h8M5 16h6"/></svg></span>
-        <h3>Карта Mastercard</h3><p>Пластик Казахстана, Армении и Турции, виртуальная карта Гонконга — от 9 990 ₽.</p></a><a class="use-card" href="cards.html"><span class="info-ic"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></span>
-        <h3>Весь каталог</h3><p>19 карт девяти стран с ценами, лимитами и фильтром по задаче: подписки, путешествия, SWIFT.</p></a></div>
+    <div class="section-head"><span class="eyebrow"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg> Гарантии</span>
+      <h2>Почему с нами безопасно</h2>
+      <p class="muted">Берём риски на себя и отвечаем за результат.</p></div>
+    <div class="guarantee-grid"><div class="guarantee">
+        <span class="guarantee-ic"><svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <div><h3>Возврат при отказе банка</h3><p>Если банк-партнёр отказал в открытии счёта — возвращаем оплату полностью. Вы ничем не рискуете.</p></div>
+      </div><div class="guarantee">
+        <span class="guarantee-ic"><svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+        <div><h3>Безопасность данных</h3><p>Не просим пароли и коды из СМС. Работаем только с официальными банками-партнёрами.</p></div>
+      </div><div class="guarantee">
+        <span class="guarantee-ic"><svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M20 19a4 4 0 0 1-4 3h-2"/></svg></span>
+        <div><h3>Сопровождение на всех этапах</h3><p>Поддержка в Telegram и WhatsApp до, во время и после оформления — поможем с активацией и пополнением.</p></div>
+      </div><div class="guarantee">
+        <span class="guarantee-ic"><svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h5a4 4 0 0 1 0 8H8M8 4v16M5 12h8M5 16h6"/></svg></span>
+        <div><h3>Прозрачные цены</h3><p>Стоимость карты, активацию и обслуживание показываем заранее. Без скрытых платежей и доплат.</p></div>
+      </div></div>
   </div>
 </section>
 
@@ -98,8 +181,8 @@
     <div class="cta-card">
       <div class="cta-text">
         <span class="eyebrow">Заявка онлайн</span>
-        <h2>Подберём альтернативу под вашу задачу</h2>
-        <p class="muted">Расскажите, зачем вам нужна была UnionPay — поездка в Китай, оплата подписок или приём платежей. Честно скажем, что подойдёт лучше, и подберём Visa или Mastercard зарубежного банка под вашу задачу и бюджет.</p>
+        <h2>Подобрать рабочую карту</h2>
+        <p class="muted">Оставьте заявку — поможем выбрать Visa или Mastercard под ваши задачи вместо UnionPay.</p>
         <ul class="cta-points">
           <li>Удалённо — приезжать не нужно</li>
           <li>Подберём карту под вашу задачу</li>
@@ -117,7 +200,7 @@
         <label>Интересует карта<select name="card"><option>Подберите за меня</option><option>Казахстан</option><option>Кыргызстан</option><option>Армения</option><option>Турция</option><option>Таджикистан</option><option>Виртуальная карта (США/Гонконг)</option><option>Премиальная / SWIFT</option></select></label>
         <label>Email (по желанию)<input name="email" type="email" placeholder="you@example.com"></label>
       </div>
-      <label class="lead-msg">Комментарий<textarea name="message" rows="3" placeholder="Например: хотел UnionPay для поездки в Китай"></textarea></label>
+      <label class="lead-msg">Комментарий<textarea name="message" rows="3" placeholder="Например: нужна карта для оплаты подписок"></textarea></label>
         <input type="text" name="_gotcha" class="lead-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       </div>
       <div class="lead-actions">
@@ -135,20 +218,29 @@
 <section id="faq" class="faq-section">
   <div class="container container-narrow">
     <div class="section-head"><span class="eyebrow">FAQ</span>
-      <h2>Вопросы про карту UnionPay</h2>
+      <h2>Вопросы про UnionPay и альтернативы</h2>
       <p class="muted">Не нашли ответ? Напишите нам в Telegram — подскажем.</p></div>
     <div class="faq-list"><details class="faq-item">
-        <summary>Можно ли оформить карту UnionPay через CardsAbroad?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
-        <div class="faq-answer"><p>Сейчас карт UnionPay в нашем каталоге нет — мы сознательно не предлагаем продукты, в которых не уверены. Под большинство задач (подписки, путешествия, онлайн-оплаты) надёжнее работают Visa и Mastercard зарубежных банков — их мы оформляем удалённо и с гарантией возврата при отказе банка. Если вам принципиально нужна UnionPay, напишите нам — обсудим задачу и честно скажем, есть ли смысл.</p></div>
+        <summary>Это легально — россиянину иметь зарубежную карту?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Да. Закон не запрещает гражданам РФ открывать счета и карты в иностранных банках. Об открытии счёта нужно уведомить ФНС в течение месяца, а раз в год подавать отчёт о движении средств (ОДДС). Мы подскажем, как это сделать.</p></div>
       </details><details class="faq-item">
-        <summary>Где UnionPay реально работает за границей?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
-        <div class="faq-answer"><p>Стабильнее всего — в Китае и материковой Азии (Гонконг, Таиланд, Вьетнам, Южная Корея, Япония — в крупных сетях). В Турции, ОАЭ и Европе приём фрагментарный: часть банкоматов и терминалов карты UnionPay российских банков не обслуживает, а онлайн-сервисы часто их отклоняют. Перед поездкой стоит проверять приём по конкретной стране и банку-эмитенту.</p></div>
+        <summary>Нужно ли ехать за границу, чтобы оформить карту?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>В большинстве случаев — нет. Многие карты (виртуальные и часть пластиковых) оформляются удалённо. Если для конкретного банка нужна личная явка, мы предупредим заранее и предложим альтернативу.</p></div>
       </details><details class="faq-item">
-        <summary>Подойдёт ли UnionPay для оплаты подписок — Apple, Google, ChatGPT, Netflix?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
-        <div class="faq-answer"><p>В большинстве случаев нет. Западные онлайн-сервисы ориентированы на Visa и Mastercard, и карты UnionPay (особенно выпущенные российскими банками) там часто не проходят. Для подписок надёжнее виртуальная или пластиковая Visa/Mastercard зарубежного банка — такие карты есть в нашем каталоге от 9 990 ₽.</p></div>
+        <summary>Сколько времени занимает оформление?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Виртуальную карту можно получить за 1 день. Пластиковую — обычно от нескольких дней до пары недель в зависимости от страны и способа доставки.</p></div>
       </details><details class="faq-item">
-        <summary>Что выбрать вместо UnionPay для поездок и онлайн-оплат?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
-        <div class="faq-answer"><p>Для путешествий — пластиковую Visa Кыргызстана или Таджикистана либо Mastercard Казахстана: они принимаются в 150+ странах. Для онлайн-оплат и подписок — виртуальную карту США или Гонконга с выпуском за 1 день. Оставьте заявку — подберём вариант под вашу задачу и бюджет.</p></div>
+        <summary>Что будет, если банк откажет в открытии счёта?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Мы возвращаем оплату полностью. Вы ничем не рискуете — это наша гарантия.</p></div>
+      </details><details class="faq-item">
+        <summary>Какие карты подойдут для оплаты подписок (Apple, Google, Steam, ChatGPT)?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Подойдут карты Казахстана, Кыргызстана и виртуальные карты США/Гонконга. Они принимаются большинством зарубежных сервисов. Подберём вариант под ваши сервисы.</p></div>
+      </details><details class="faq-item">
+        <summary>Как происходит оплата и есть ли рассрочка?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Оплатить можно удобным способом после подбора карты. Доступна рассрочка от 990 ₽/мес. Все условия озвучиваем заранее.</p></div>
+      </details><details class="faq-item">
+        <summary>Безопасно ли это? Вы просите пароли и коды?<span class="faq-plus"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span></summary>
+        <div class="faq-answer"><p>Нет. Мы никогда не запрашиваем пароли, коды из СМС и доступ к вашим российским счетам. Работаем только с официальными банками-партнёрами.</p></div>
       </details></div>
   </div>
 </section>
@@ -178,8 +270,8 @@
       <a href="kazakhstan.html">Карта Казахстана</a>
       <a href="kyrgyzstan.html">Карта Кыргызстана</a>
       <a href="tajikistan.html">Карта Таджикистана</a>
-      <a href="visa.html">Карта Visa</a>
       <a href="mastercard.html">Карта Mastercard</a>
+      <a href="visa.html">Карта Visa</a>
       <a href="unionpay.html">Карта UnionPay</a>
       <a href="cards.html#faq">Частые вопросы</a>
       <a href="index.html#reviews">Отзывы</a>
@@ -187,8 +279,10 @@
     </div>
     <div class="footer-col">
       <h4>Контакты</h4>
+      <a href="tel:+74950000000">+7 (495) 000-00-00</a>
       <a href="mailto:info@cardsabroad.ru">info@cardsabroad.ru</a>
       <a href="https://t.me/Razdor_Razdor" rel="noopener">Telegram @Razdor_Razdor</a>
+      <a href="https://wa.me/70000000000" rel="noopener">WhatsApp</a>
       <span class="muted small">Ежедневно 10:00–20:00 (МСК)</span>
     </div>
   </div>
@@ -301,24 +395,5 @@
   })();
 </script>
 
-<script>
-  // Плавное появление блоков при прокрутке
-  (function () {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!('IntersectionObserver' in window)) return;
-    var els = document.querySelectorAll('.offer, .step, .use-card, .guarantee, .review, .card, .info-tile, .faq-item, .more-card, .trust-item');
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('rv-in'); io.unobserve(en.target); }
-      });
-    }, { threshold: .12, rootMargin: '0px 0px -5% 0px' });
-    els.forEach(function (el, i) {
-      el.classList.add('rv');
-      el.style.transitionDelay = Math.min(i % 4 * 70, 280) + 'ms';
-      io.observe(el);
-    });
-  })();
-</script>
-<script src="site.js" defer></script>
 </body>
 </html>
