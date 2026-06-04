@@ -1,0 +1,196 @@
+{
+  "_comment": "Каталог карт. Данные о ценах/условиях получены с easypay.world и могут меняться — уточняйте при заказе. Цена в рублях.",
+  "cards": [
+    {
+      "id": "kz-mc-standard",
+      "name": "MasterCard Standard",
+      "country": "Казахстан", "flag": "🇰🇿", "system": "MasterCard", "type": "Дебетовая",
+      "price": 14990, "currencies": "USD", "processing": "5 дней",
+      "activation": "Бесплатно (доставка 20 000 ₸)", "fee": "eResidency $120 (1-й год), далее $499",
+      "withdrawal": "Без заявленных лимитов", "purchase": "Без заявленных лимитов",
+      "cash": "—", "validity": "5 лет",
+      "features": ["Нужна казахстанская SIM-карта"],
+      "useCases": ["subscribe"], "available": true, "popular": true, "swift": false
+    },
+    {
+      "id": "tj-visa-gold-debit",
+      "name": "VISA Gold", "country": "Таджикистан", "flag": "🇹🇯", "system": "Visa", "type": "Дебетовая",
+      "price": 21990, "currencies": "—", "processing": "3 дня",
+      "activation": "$35", "fee": "$2/мес",
+      "withdrawal": "$5 000/день", "purchase": "$10 000/день (онлайн)",
+      "cash": "1,5% (мин. $3)", "validity": "3 года",
+      "features": ["Пополнение: ВТБ, Сбер, Газпромбанк, МТС Банк, Т-Банк, ЮMoney"],
+      "useCases": ["subscribe", "travel"], "available": true, "popular": true, "swift": false
+    },
+    {
+      "id": "kg-visa-multi",
+      "name": "VISA мультивалютная (Gold/Infinite)", "country": "Кыргызстан", "flag": "🇰🇬", "system": "Visa", "type": "Дебетовая / Кредитная",
+      "price": 32990, "currencies": "USD", "processing": "7–17 дней",
+      "activation": "Бесплатно", "fee": "$20/год",
+      "withdrawal": "$6 000/день", "purchase": "$6 000/день",
+      "cash": "1% (мин. 250 сом / $3)", "validity": "5 лет",
+      "features": ["Низкая годовая плата", "Выбор дебет/кредит"],
+      "useCases": ["travel", "subscribe"], "available": true, "popular": true, "swift": false
+    },
+    {
+      "id": "kg-visa-gold-debit",
+      "name": "VISA Gold", "country": "Кыргызстан", "flag": "🇰🇬", "system": "Visa", "type": "Дебетовая",
+      "price": 34990, "currencies": "USD, EUR", "processing": "14 дней",
+      "activation": "$150", "fee": "$50/год",
+      "withdrawal": "$5 000 / €5 000 в день", "purchase": "$15 000/день (офлайн и онлайн)",
+      "cash": "1,5% (мин. $2)", "validity": "3 года",
+      "features": ["Исходящий SWIFT"],
+      "useCases": ["travel", "swift"], "available": true, "popular": false, "swift": true
+    },
+    {
+      "id": "kg-visa-credit",
+      "name": "VISA Credit (Platinum/Signature)", "country": "Кыргызстан", "flag": "🇰🇬", "system": "Visa", "type": "Кредитная",
+      "price": 35990, "currencies": "—", "processing": "14 дней",
+      "activation": "Бесплатно", "fee": "$150/год",
+      "withdrawal": "Без лимита", "purchase": "Без лимита",
+      "cash": "1% (мин. $2)", "validity": "5 лет",
+      "features": ["Без лимитов", "Подходит для аренды авто (auto-rental)"],
+      "useCases": ["travel", "freelance"], "available": true, "popular": true, "swift": false
+    },
+    {
+      "id": "cis-visa",
+      "name": "VISA (Classic/Platinum)", "country": "Банк СНГ", "flag": "🌐", "system": "Visa", "type": "Дебетовая",
+      "price": 38990, "currencies": "USD, EUR", "processing": "5–10 дней",
+      "activation": "Бесплатно", "fee": "$50 за 5 лет",
+      "withdrawal": "$2 000/день", "purchase": "$2 000/день",
+      "cash": "1,5% (мин. $0,20)", "validity": "5 лет",
+      "features": ["Низкая комиссия за снятие"],
+      "useCases": ["subscribe"], "available": true, "popular": false, "swift": false
+    },
+    {
+      "id": "kg-visa-gold-premium",
+      "name": "VISA Gold Premium", "country": "Кыргызстан", "flag": "🇰🇬", "system": "Visa", "type": "Дебетовая",
+      "price": 38990, "currencies": "USD, EUR", "processing": "17 дней",
+      "activation": "$77 + депозит 5 000 сом", "fee": "$100 (со 2-го года)",
+      "withdrawal": "$10 000/день", "purchase": "$25 000/день",
+      "cash": "1,5% (мин. $2)", "validity": "5 лет",
+      "features": ["Высокие лимиты"],
+      "useCases": ["travel"], "available": true, "popular": false, "swift": false
+    },
+    {
+      "id": "am-mc-standard",
+      "name": "MasterCard Standard", "country": "Армения", "flag": "🇦🇲", "system": "MasterCard", "type": "Дебетовая",
+      "price": 37990, "currencies": "USD, EUR", "processing": "17 дней",
+      "activation": "Бесплатно", "fee": "40 000 AMD за 2 года + мин. баланс 10 €/$",
+      "withdrawal": "$2 000 / €2 000 в день", "purchase": "$3 000 / €3 000 в день",
+      "cash": "2% (мин. 2 500 AMD)", "validity": "4 года",
+      "features": ["Карта надёжной армянской системы"],
+      "useCases": ["subscribe"], "available": true, "popular": false, "swift": false
+    },
+    {
+      "id": "cis-credit-gold",
+      "name": "Credit Card (Gold)", "country": "Банк СНГ", "flag": "🌐", "system": "Visa", "type": "Кредитная",
+      "price": 34990, "currencies": "USD", "processing": "10 дней",
+      "activation": "$40", "fee": "$10 (со 2-го года)",
+      "withdrawal": "$1 000/день", "purchase": "$5 000/день",
+      "cash": "2% (мин. $2)", "validity": "4 года",
+      "features": ["Недорогое обслуживание"],
+      "useCases": ["subscribe"], "available": true, "popular": false, "swift": false
+    },
+    {
+      "id": "am-visa-credit",
+      "name": "VISA Credit (Signature/Infinite)", "country": "Армения", "flag": "🇦🇲", "system": "Visa", "type": "Кредитная",
+      "price": 54990, "currencies": "USD, EUR", "processing": "21 день",
+      "activation": "$130", "fee": "$26/мес + $182/год",
+      "withdrawal": "$3 000/день", "purchase": "офлайн $30 000 / онлайн $20 000 в день",
+      "cash": "1,5% (мин. $4)", "validity": "5 лет",
+      "features": ["Премиальный уровень", "Исходящий SWIFT"],
+      "useCases": ["freelance", "swift"], "available": true, "popular": false, "swift": true
+    },
+    {
+      "id": "tr-mc-standard",
+      "name": "MasterCard Standard", "country": "Турция", "flag": "🇹🇷", "system": "MasterCard", "type": "Дебетовая",
+      "price": 62990, "currencies": "USD, EUR, TRY", "processing": "21 день",
+      "activation": "Бесплатно", "fee": "Включена в стоимость",
+      "withdrawal": "7 000 TRY/день", "purchase": "100 000 TRY/день",
+      "cash": "Бесплатно в Турции, 2–3% за рубежом", "validity": "5 лет",
+      "features": ["Исходящий SWIFT", "Счёт в лирах/долларах/евро"],
+      "useCases": ["travel", "swift"], "available": true, "popular": false, "swift": true
+    },
+    {
+      "id": "ipb-visa-platinum",
+      "name": "VISA (Platinum/Signature)", "country": "Международный банк", "flag": "🌍", "system": "Visa", "type": "Кредитная",
+      "price": 64990, "currencies": "Мультивалютная", "processing": "21 день",
+      "activation": "Бесплатно", "fee": "$22/мес или $220/год",
+      "withdrawal": "$18 000/день, $55 000/мес", "purchase": "$36 000/день",
+      "cash": "1,5% (мин. $3)", "validity": "4 года",
+      "features": ["Высокие лимиты", "Мультивалютный счёт", "Исходящий SWIFT"],
+      "useCases": ["swift", "freelance"], "available": true, "popular": true, "swift": true
+    },
+    {
+      "id": "ipb-mc-elite",
+      "name": "MasterCard Elite", "country": "Международный банк", "flag": "🌍", "system": "MasterCard", "type": "Кредитная",
+      "price": 67990, "currencies": "Мультивалютная", "processing": "21 день",
+      "activation": "Бесплатно", "fee": "$22/мес или $220/год",
+      "withdrawal": "$18 000/день, $55 000/мес", "purchase": "$36 000/день",
+      "cash": "1,5% (мин. $3)", "validity": "4 года",
+      "features": ["Премиальный статус Elite", "Мультивалютный счёт", "Исходящий SWIFT"],
+      "useCases": ["swift", "freelance"], "available": true, "popular": false, "swift": true
+    },
+    {
+      "id": "am-visa-classic",
+      "name": "VISA (Classic/Gold)", "country": "Армения", "flag": "🇦🇲", "system": "Visa", "type": "Дебетовая",
+      "price": 73990, "currencies": "USD, EUR", "processing": "25 дней",
+      "activation": "200 000 – 15 000 000 AMD (зависит от курса)", "fee": "0 – 1 000 000 AMD (зависит от курса)",
+      "withdrawal": "до 5 000 000 AMD/день", "purchase": "до 8 000 000 AMD/день",
+      "cash": "1,5% (мин. 1 500 AMD)", "validity": "3 года",
+      "features": ["Максимально надёжный банк", "Исходящий SWIFT"],
+      "useCases": ["swift", "travel"], "available": true, "popular": false, "swift": true
+    },
+    {
+      "id": "am-mc-world",
+      "name": "MasterCard (Standard/World)", "country": "Армения", "flag": "🇦🇲", "system": "MasterCard", "type": "Дебетовая",
+      "price": 73990, "currencies": "USD, EUR", "processing": "25 дней",
+      "activation": "200 000 – 15 000 000 AMD (зависит от курса)", "fee": "0 – 1 000 000 AMD (зависит от курса)",
+      "withdrawal": "до 5 000 000 AMD/день", "purchase": "до 8 000 000 AMD/день",
+      "cash": "1,5% (мин. 1 500 AMD)", "validity": "3 года",
+      "features": ["Премиальная World", "Исходящий SWIFT"],
+      "useCases": ["swift"], "available": true, "popular": false, "swift": true
+    },
+    {
+      "id": "hk-mc-virtual",
+      "name": "MasterCard Virtual", "country": "Гонконг", "flag": "🇭🇰", "system": "MasterCard", "type": "Виртуальная",
+      "price": 9990, "currencies": "USD, EUR", "processing": "1 день",
+      "activation": "$25 + депозит $25", "fee": "$7/мес",
+      "withdrawal": "—", "purchase": "—",
+      "cash": "Пополнение: 3% USDT / 5% СБП", "validity": "2 года",
+      "features": ["Самая быстрая выдача", "Для онлайн-оплат"],
+      "useCases": ["subscribe"], "available": false, "popular": false, "swift": false
+    },
+    {
+      "id": "usa-mc-virtual",
+      "name": "MasterCard Virtual", "country": "США", "flag": "🇺🇸", "system": "MasterCard", "type": "Виртуальная",
+      "price": 20990, "currencies": "USD", "processing": "1 день",
+      "activation": "$25 + депозит $25", "fee": "$7/мес",
+      "withdrawal": "—", "purchase": "—",
+      "cash": "Пополнение: 3% USDT / 5% СБП", "validity": "2 года",
+      "features": ["Карта США для сервисов и подписок"],
+      "useCases": ["subscribe"], "available": false, "popular": false, "swift": false
+    },
+    {
+      "id": "usa-visa-virtual",
+      "name": "VISA Virtual", "country": "США", "flag": "🇺🇸", "system": "Visa", "type": "Виртуальная",
+      "price": 20990, "currencies": "USD", "processing": "1 день",
+      "activation": "$25 + депозит $25", "fee": "$7/мес",
+      "withdrawal": "—", "purchase": "—",
+      "cash": "Пополнение: 3% USDT / 5% СБП", "validity": "2 года",
+      "features": ["Карта США для сервисов и подписок"],
+      "useCases": ["subscribe"], "available": false, "popular": false, "swift": false
+    },
+    {
+      "id": "tr-mc-fast",
+      "name": "MasterCard Standard (быстрая)", "country": "Турция", "flag": "🇹🇷", "system": "MasterCard", "type": "Дебетовая",
+      "price": 19990, "currencies": "TRY, USD", "processing": "1 день",
+      "activation": "$70", "fee": "Бесплатно",
+      "withdrawal": "50 000 TRY (≈$1 500)/день", "purchase": "100 000 TRY/день, 1 000 000 TRY/мес",
+      "cash": "—", "validity": "4 года",
+      "features": ["Выдача за 1 день"],
+      "useCases": ["travel", "subscribe"], "available": false, "popular": false, "swift": false
+    }
+  ]
+}

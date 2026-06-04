@@ -1,0 +1,18 @@
+# Собранный сайт (генерируется командой python build.py)
+dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Системное
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Секреты (токен Telegram-бота и т.п.) — НЕ коммитить!
+secrets.json
+
+# Архивы и временное
+*.zip
