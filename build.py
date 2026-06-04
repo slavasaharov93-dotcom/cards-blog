@@ -63,6 +63,10 @@ def _secret(key, default=""):
 TELEGRAM_BOT_TOKEN = _secret("TELEGRAM_BOT_TOKEN")  # бот @cardabroadbot
 TELEGRAM_CHAT_ID = _secret("TELEGRAM_CHAT_ID")      # чат @Razdor_Razdor
 
+# Адрес Cloudflare Worker для ИИ-чат-бота. Пусто — виджет чата НЕ показывается.
+# После развёртывания Worker вставьте сюда https://...workers.dev (см. chatbot/README.md).
+CHATBOT_WORKER_URL = ""
+
 # Категории применения карт
 USE_CASES = {
     "travel": "Путешествия",
@@ -232,6 +236,99 @@ def md_to_html(md):
 # Шаблоны страниц
 # ---------------------------------------------------------------------------
 
+def chatbot_widget():
+    """Виджет ИИ-чат-бота (выбор провайдера/модели, публичный + админ-режим).
+    Возвращает пустую строку, если адрес Worker не задан."""
+    if not CHATBOT_WORKER_URL:
+        return ""
+    # Обычная (не f) строка: внутри много фигурных скобок JS.
+    tpl = """
+<div id="aiChat">
+  <button class="aichat-fab" id="aichatFab" aria-label="Чат с ИИ-консультантом">💬</button>
+  <div class="aichat-panel" id="aichatPanel" hidden>
+    <div class="aichat-head">
+      <strong>ИИ-консультант</strong>
+      <select id="aichatProvider" title="Провайдер">
+        <option value="anthropic">Claude</option>
+        <option value="openai">ChatGPT</option>
+      </select>
+      <select id="aichatModel" title="Модель"></select>
+      <button class="aichat-x" id="aichatClose" aria-label="Закрыть">×</button>
+    </div>
+    <div class="aichat-msgs" id="aichatMsgs"></div>
+    <div class="aichat-admin" id="aichatAdminRow">
+      <input type="password" id="aichatPass" placeholder="Пароль администратора" autocomplete="off">
+      <button id="aichatUnlock" type="button">Войти</button>
+    </div>
+    <div class="aichat-articlerow" id="aichatArticleRow" hidden>
+      <button id="aichatWrite" type="button">✍️ Написать статью в блог</button>
+    </div>
+    <form class="aichat-input" id="aichatForm">
+      <textarea id="aichatText" rows="1" placeholder="Спросите про карты…"></textarea>
+      <button type="submit" aria-label="Отправить">▶</button>
+    </form>
+  </div>
+</div>
+<style>
+#aiChat *{box-sizing:border-box}
+.aichat-fab{position:fixed;left:20px;bottom:20px;z-index:9998;width:56px;height:56px;border-radius:50%;border:none;background:#2563eb;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.aichat-panel{position:fixed;left:20px;bottom:86px;z-index:9999;width:344px;max-width:calc(100vw - 40px);height:470px;max-height:calc(100vh - 120px);display:flex;flex-direction:column;background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.28);font-size:14px}
+.aichat-head{display:flex;align-items:center;gap:6px;padding:8px 10px;background:#2563eb;color:#fff}
+.aichat-head strong{margin-right:auto;font-size:14px;white-space:nowrap}
+.aichat-head select{font-size:12px;border-radius:6px;border:none;padding:2px 4px;max-width:90px}
+.aichat-x{background:transparent;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1;padding:0 2px}
+.aichat-msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;background:#f8fafc}
+.aichat-msg{padding:8px 10px;border-radius:10px;max-width:88%;white-space:pre-wrap;line-height:1.45;word-wrap:break-word}
+.aichat-msg.user{align-self:flex-end;background:#2563eb;color:#fff}
+.aichat-msg.bot{align-self:flex-start;background:#fff;border:1px solid #e5e7eb;color:#111}
+.aichat-admin,.aichat-articlerow{display:flex;gap:6px;padding:6px 10px;border-top:1px solid #eee}
+.aichat-admin input{flex:1;padding:6px;border:1px solid #d1d5db;border-radius:6px;font-size:13px}
+.aichat-admin button,.aichat-articlerow button{padding:6px 10px;border:none;border-radius:6px;background:#10b981;color:#fff;cursor:pointer;font-size:13px}
+.aichat-articlerow{justify-content:center}
+.aichat-articlerow button{width:100%}
+.aichat-input{display:flex;gap:6px;padding:8px;border-top:1px solid #eee}
+.aichat-input textarea{flex:1;resize:none;padding:8px;border:1px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:14px;max-height:90px}
+.aichat-input button{width:42px;border:none;border-radius:8px;background:#2563eb;color:#fff;cursor:pointer;font-size:16px}
+:root[data-theme="dark"] .aichat-panel{background:#0f172a;border-color:#1e293b;color:#e5e7eb}
+:root[data-theme="dark"] .aichat-msgs{background:#0b1220}
+:root[data-theme="dark"] .aichat-msg.bot{background:#1e293b;border-color:#334155;color:#e5e7eb}
+:root[data-theme="dark"] .aichat-admin input,:root[data-theme="dark"] .aichat-input textarea{background:#1e293b;border-color:#334155;color:#e5e7eb}
+</style>
+<script>
+(function(){
+  var URL_="__WORKER_URL__";
+  var MODELS={anthropic:["claude-haiku-4-5","claude-sonnet-4-6","claude-opus-4-8"],openai:["gpt-4o-mini","gpt-4o"]};
+  var LABELS={"claude-haiku-4-5":"Haiku · быстрый","claude-sonnet-4-6":"Sonnet · баланс","claude-opus-4-8":"Opus · умный","gpt-4o-mini":"gpt-4o-mini","gpt-4o":"gpt-4o"};
+  var $=function(id){return document.getElementById(id);};
+  var fab=$("aichatFab"),panel=$("aichatPanel"),closeB=$("aichatClose"),provSel=$("aichatProvider"),modelSel=$("aichatModel"),msgs=$("aichatMsgs"),form=$("aichatForm"),text=$("aichatText"),adminRow=$("aichatAdminRow"),passIn=$("aichatPass"),unlockB=$("aichatUnlock"),articleRow=$("aichatArticleRow"),writeB=$("aichatWrite");
+  var history=[],mode="public",pass="";
+  function fillModels(){var p=provSel.value;modelSel.innerHTML="";MODELS[p].forEach(function(m){var o=document.createElement("option");o.value=m;o.textContent=LABELS[m]||m;modelSel.appendChild(o);});}
+  fillModels();provSel.onchange=fillModels;
+  fab.onclick=function(){panel.hidden=!panel.hidden;if(!panel.hidden)text.focus();};
+  closeB.onclick=function(){panel.hidden=true;};
+  function addMsg(role,txt){var d=document.createElement("div");d.className="aichat-msg "+role;d.textContent=txt;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  function ask(content){
+    addMsg("user",content);history.push({role:"user",content:content});
+    var load=addMsg("bot","…");
+    fetch(URL_,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({provider:provSel.value,model:modelSel.value,mode:mode,password:pass,messages:history})})
+      .then(function(r){return r.json();})
+      .then(function(d){load.remove();if(d.error){addMsg("bot","⚠️ "+d.error);return;}addMsg("bot",d.reply);history.push({role:"assistant",content:d.reply});})
+      .catch(function(){load.remove();addMsg("bot","⚠️ Ошибка связи. Попробуйте позже.");});
+  }
+  form.onsubmit=function(e){e.preventDefault();var v=text.value.trim();if(!v)return;text.value="";ask(v);};
+  text.addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();form.requestSubmit();}});
+  unlockB.onclick=function(){pass=passIn.value;if(!pass)return;mode="admin";adminRow.hidden=true;articleRow.hidden=false;addMsg("bot","🔓 Админ-режим. Спросите про работу блога/оркестры или нажмите «Написать статью». (Пароль проверяется при первом запросе.)");};
+  writeB.onclick=function(){var topic=prompt("О чём написать новую статью в блог?");if(!topic)return;addMsg("user","✍️ Статья на тему: "+topic);var load=addMsg("bot","Пишу статью и публикую в блог…");
+    fetch(URL_,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"write_article",provider:provSel.value,model:modelSel.value,mode:"admin",password:pass,topic:topic})})
+      .then(function(r){return r.json();}).then(function(d){load.remove();addMsg("bot",d.error?("⚠️ "+d.error):d.reply);})
+      .catch(function(){load.remove();addMsg("bot","⚠️ Ошибка связи.");});};
+  addMsg("bot","Здравствуйте! Я ИИ-консультант по зарубежным картам. Чем помочь? 💳");
+})();
+</script>
+"""
+    return tpl.replace("__WORKER_URL__", CHATBOT_WORKER_URL)
+
+
 def page_shell(title, description, body, *, active="", extra_head="", base=""):
     # base — префикс пути до корня сайта ("" для корня, "../" для /blog/*).
     nav_items = [("Главная", f"{base}index.html", "home"),
@@ -245,6 +342,7 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
         f'<a href="{href}"{" class=\"active\"" if active == key else ""}>{label}</a>'
         for label, href, key in nav_items
     )
+    chatbot = chatbot_widget()
     return f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -431,6 +529,7 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
     }});
   }})();
 </script>
+{chatbot}
 </body>
 </html>"""
 
