@@ -44,19 +44,44 @@
 <main>
 
 <section class="hero">
-  <div class="container">
-    <span class="eyebrow">Visa и Mastercard · удалённо · с гарантией</span>
-    <h1>Зарубежная карта для россиян<br><span class="grad">оформим за вас в 2026</span></h1>
-    <p class="lead">Подберём и оформим рабочую карту иностранного банка под вашу задачу —
-    подписки, путешествия, фриланс и SWIFT. Без выезда за границу.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="cards.html">Подобрать карту</a>
-      <a class="btn btn-ghost" href="#lead">Получить консультацию</a>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Visa и Mastercard · удалённо · с гарантией</span>
+      <h1>Зарубежная карта для россиян<br><span class="grad">оформим за вас в 2026</span></h1>
+      <p class="lead">Подберём и оформим рабочую карту иностранного банка под вашу задачу —
+      подписки, путешествия, фриланс и SWIFT. Без выезда за границу.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#quiz">Подобрать карту за 30 сек</a>
+        <a class="btn btn-ghost" href="#lead">Получить консультацию</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>от 9 990 ₽</strong><span>цена карты</span></div>
+        <div><strong>9</strong><span>стран на выбор</span></div>
+        <div><strong>от 1 дня</strong><span>срок выпуска</span></div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div><strong>от 9 990 ₽</strong><span>цена карты</span></div>
-      <div><strong>9</strong><span>стран на выбор</span></div>
-      <div><strong>от 1 дня</strong><span>срок выпуска</span></div>
+    <div class="hero-visual" id="hero-visual" aria-hidden="true">
+      <div class="card3d card3d-back-card">
+        <div class="card3d-face">
+          <div class="card3d-row"><span class="card3d-chip"></span></div>
+          <div class="card3d-num">5169 •••• •••• 8841</div>
+          <div class="card3d-row card3d-foot"><span>KG · VISA GOLD</span><span>12/30</span></div>
+        </div>
+      </div>
+      <div class="card3d" id="card3d">
+        <div class="card3d-face">
+          <div class="card3d-row">
+            <span class="card3d-chip"></span>
+            <svg class="card3d-wave" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 8.5a8 8 0 0 1 0 7"/><path d="M9.5 6.5a11 11 0 0 1 0 11"/><path d="M13 4.5a14.5 14.5 0 0 1 0 15"/></svg>
+          </div>
+          <div class="card3d-num">4276 •••• •••• 2026</div>
+          <div class="card3d-row card3d-foot">
+            <span class="card3d-holder"><small>CARDHOLDER</small><b>CARDSABROAD CLIENT</b></span>
+            <span class="card3d-brand">◈</span>
+          </div>
+          <span class="card3d-shine"></span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -137,6 +162,59 @@
   <div class="offer-feats"><span class='chip'>Без лимитов</span><span class='chip'>Подходит для аренды авто (auto-rental)</span></div>
   <a class="btn btn-primary offer-cta" href="order.html">Оформить</a>
 </article></div>
+  </div>
+</section>
+
+<section id="quiz" class="quiz-section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Подберите карту за 30 секунд</h2>
+      <p class="muted">Три вопроса — и мы покажем подходящую карту с честным расчётом стоимости владения.</p>
+    </div>
+    <div class="quiz-wrap">
+      <div class="quiz-questions">
+        <div class="quiz-q">
+          <div class="quiz-label">1. Для чего нужна карта?</div>
+          <div class="quiz-opts" data-q="use" role="group" aria-label="Назначение карты">
+            <button type="button" class="quiz-opt active" data-v="subscribe">Подписки и сервисы</button>
+            <button type="button" class="quiz-opt" data-v="travel">Путешествия</button>
+            <button type="button" class="quiz-opt" data-v="freelance">Фриланс и доход</button>
+            <button type="button" class="quiz-opt" data-v="swift">SWIFT-переводы</button>
+          </div>
+        </div>
+        <div class="quiz-q">
+          <div class="quiz-label">2. Какой формат удобнее?</div>
+          <div class="quiz-opts" data-q="format" role="group" aria-label="Формат карты">
+            <button type="button" class="quiz-opt active" data-v="any">Не важно</button>
+            <button type="button" class="quiz-opt" data-v="plastic">Пластиковая</button>
+            <button type="button" class="quiz-opt" data-v="virtual">Виртуальная</button>
+          </div>
+        </div>
+        <div class="quiz-q">
+          <div class="quiz-label">3. Бюджет на оформление?</div>
+          <div class="quiz-opts" data-q="budget" role="group" aria-label="Бюджет">
+            <button type="button" class="quiz-opt" data-v="low">До 20 000 ₽</button>
+            <button type="button" class="quiz-opt active" data-v="mid">До 40 000 ₽</button>
+            <button type="button" class="quiz-opt" data-v="any">Не ограничен</button>
+          </div>
+        </div>
+      </div>
+      <div class="quiz-result" id="quiz-result" aria-live="polite"></div>
+    </div>
+    <div class="calc-wrap" id="calc-wrap">
+      <div class="calc-head">
+        <h3>Стоимость владения — считаем честно</h3>
+        <div class="calc-controls">
+          <div class="quiz-opts" data-q="term">
+            <button type="button" class="quiz-opt active" data-v="1">1 год</button>
+            <button type="button" class="quiz-opt" data-v="2">2 года</button>
+          </div>
+          <label class="calc-rate">Курс $&nbsp;<input type="number" id="calc-rate" value="95" min="1" step="1" inputmode="numeric">&nbsp;₽</label>
+        </div>
+      </div>
+      <div class="calc-rows" id="calc-rows"></div>
+      <p class="muted small">Расчёт примерный: курс доллара задайте свой, локальные сборы (доставка, депозиты) указаны в карточке. Итоговые условия фиксируем до оплаты.</p>
+    </div>
   </div>
 </section>
 
@@ -436,6 +514,145 @@
     </div>
   </div>
 </section>
+
+<script>
+  // ---------- Квиз-подбор + калькулятор стоимости владения ----------
+  (function () {
+    var CARDS = [
+      { c: 'Казахстан', f: 'kz', n: 'MasterCard Standard', p: 14990, use: ['subscribe'], v: false, days: '5 дней', actU: 0, actNote: '+ доставка 20 000 ₸', fee1U: 120, fee2U: 499, feeNote: 'eResidency' },
+      { c: 'Таджикистан', f: 'tj', n: 'VISA Gold', p: 21990, use: ['subscribe', 'travel'], v: false, days: '3 дня', actU: 35, fee1U: 24, fee2U: 24, feeNote: '$2/мес' },
+      { c: 'Кыргызстан', f: 'kg', n: 'VISA мультивалютная (Gold/Infinite)', p: 32990, use: ['travel', 'subscribe'], v: false, days: '7–17 дней', actU: 0, fee1U: 20, fee2U: 20 },
+      { c: 'Кыргызстан', f: 'kg', n: 'VISA Credit (Platinum/Signature)', p: 35990, use: ['travel', 'freelance'], v: false, days: '14 дней', actU: 0, fee1U: 150, fee2U: 150 },
+      { c: 'Банк СНГ', f: null, n: 'VISA (Classic/Platinum)', p: 38990, use: ['subscribe'], v: false, days: '5–10 дней', actU: 0, fee1U: 10, fee2U: 10, feeNote: '$50 за 5 лет' },
+      { c: 'Армения', f: 'am', n: 'VISA Credit (Signature/Infinite)', p: 54990, use: ['freelance', 'swift'], v: false, days: '21 день', actU: 130, fee1U: 494, fee2U: 494, feeNote: '$26/мес + $182/год' },
+      { c: 'Международный банк', f: null, n: 'VISA (Platinum/Signature)', p: 64990, use: ['swift', 'freelance'], v: false, days: '21 день', actU: 0, fee1U: 220, fee2U: 220 },
+      { c: 'Гонконг', f: 'hk', n: 'MasterCard Virtual', p: 9990, use: ['subscribe'], v: true, soon: true, days: '1 день', actU: 50, actNote: 'вкл. депозит $25', fee1U: 84, fee2U: 84, feeNote: '$7/мес' },
+      { c: 'Турция', f: 'tr', n: 'MasterCard Standard (быстрая)', p: 19990, use: ['travel', 'subscribe'], v: false, soon: true, days: '1 день', actU: 70, fee1U: 0, fee2U: 0 }
+    ];
+    var BUDGET = { low: 20000, mid: 40000, any: Infinity };
+    var state = { use: 'subscribe', format: 'any', budget: 'mid', term: 1 };
+    var selected = null;
+    var resultEl = document.getElementById('quiz-result');
+    var rowsEl = document.getElementById('calc-rows');
+    var rateEl = document.getElementById('calc-rate');
+    if (!resultEl || !rowsEl) return;
+
+    function fmt(n) { return Math.round(n).toLocaleString('ru-RU'); }
+    function flagImg(card, size) {
+      return card.f
+        ? '<img src="https://flagcdn.com/' + card.f + '.svg" alt="" width="' + size + '" style="border-radius:4px;vertical-align:-3px">'
+        : '<span style="font-size:' + size + 'px;line-height:1">◈</span>';
+    }
+    function score(card) {
+      var s = 0;
+      if (card.use.indexOf(state.use) >= 0) s += 3;
+      if (state.format === 'virtual') s += card.v ? 2 : -4;
+      if (state.format === 'plastic') s += card.v ? -4 : 1;
+      s += card.p <= BUDGET[state.budget] ? 1 : -2.5;
+      if (card.soon) s -= 1;
+      return s - card.p / 1e7;
+    }
+    function pick() {
+      return CARDS.slice().sort(function (a, b) { return score(b) - score(a); });
+    }
+    function renderResult() {
+      var ranked = pick();
+      var best = ranked[0];
+      selected = best;
+      var alts = ranked.slice(1, 3);
+      var html =
+        '<div class="quiz-best">' +
+          '<div class="quiz-best-head">' + flagImg(best, 30) +
+            '<div><b>' + best.c + ' — ' + best.n + '</b>' +
+            '<span class="muted small">' + (best.v ? 'Виртуальная' : 'Пластиковая') + ' · выпуск ' + best.days + (best.soon ? ' · скоро в продаже' : '') + '</span></div>' +
+          '</div>' +
+          '<div class="quiz-best-price">' + fmt(best.p) + ' ₽</div>' +
+          (best.soon ? '<p class="muted small">Эта карта скоро появится — оставьте заявку, забронируем условия или предложим альтернативу.</p>' : '') +
+          '<div class="quiz-best-actions">' +
+            '<a class="btn btn-primary" href="order.html">Оформить эту карту</a>' +
+            '<a class="btn btn-ghost btn-sm" href="#calc-wrap">Стоимость владения ↓</a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="quiz-alts"><span class="muted small">Ещё подходят:</span>' +
+          alts.map(function (c, i) {
+            return '<button type="button" class="quiz-alt" data-i="' + CARDS.indexOf(c) + '">' + flagImg(c, 18) + ' ' + c.c + ' · ' + fmt(c.p) + ' ₽</button>';
+          }).join('') +
+        '</div>';
+      resultEl.innerHTML = html;
+      resultEl.querySelectorAll('.quiz-alt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          selected = CARDS[+b.getAttribute('data-i')];
+          renderCalc();
+          document.getElementById('calc-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      });
+      renderCalc();
+    }
+    function renderCalc() {
+      var c = selected; if (!c) return;
+      var rate = Math.max(1, parseFloat(rateEl.value) || 95);
+      var act = c.actU * rate;
+      var fee = c.fee1U * rate + (state.term === 2 ? c.fee2U * rate : 0);
+      var total = c.p + act + fee;
+      var rows = [
+        ['Карта «' + c.c + ' — ' + c.n + '»', fmt(c.p) + ' ₽'],
+        ['Активация', (c.actU ? '$' + c.actU + ' ≈ ' + fmt(act) + ' ₽' : 'Бесплатно') + (c.actNote ? ' <span class="muted small">(' + c.actNote + ')</span>' : '')],
+        ['Обслуживание, 1-й год', c.fee1U ? '$' + c.fee1U + ' ≈ ' + fmt(c.fee1U * rate) + ' ₽' + (c.feeNote ? ' <span class="muted small">(' + c.feeNote + ')</span>' : '') : 'Бесплатно']
+      ];
+      if (state.term === 2) rows.push(['Обслуживание, 2-й год', c.fee2U ? '$' + c.fee2U + ' ≈ ' + fmt(c.fee2U * rate) + ' ₽' : 'Бесплатно']);
+      rowsEl.innerHTML = rows.map(function (r) {
+        return '<div class="calc-row"><span>' + r[0] + '</span><b>' + r[1] + '</b></div>';
+      }).join('') +
+      '<div class="calc-row calc-total"><span>Итого за ' + (state.term === 2 ? '2 года' : '1 год') + '</span><b>≈ ' + fmt(total) + ' ₽</b></div>';
+    }
+    document.querySelectorAll('.quiz-opts').forEach(function (group) {
+      var q = group.getAttribute('data-q');
+      group.querySelectorAll('.quiz-opt').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          group.querySelectorAll('.quiz-opt').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          if (q === 'term') { state.term = +btn.getAttribute('data-v'); renderCalc(); }
+          else { state[q] = btn.getAttribute('data-v'); renderResult(); }
+        });
+      });
+    });
+    rateEl.addEventListener('input', renderCalc);
+    renderResult();
+  })();
+
+  // ---------- 3D-карта в hero ----------
+  (function () {
+    var wrap = document.getElementById('hero-visual');
+    var card = document.getElementById('card3d');
+    if (!wrap || !card) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!matchMedia('(hover: hover)').matches) return;
+    wrap.addEventListener('pointermove', function (e) {
+      var r = wrap.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5;
+      var y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = 'rotateY(' + (14 + x * 16) + 'deg) rotateX(' + (-6 - y * 14) + 'deg)';
+    });
+    wrap.addEventListener('pointerleave', function () { card.style.transform = ''; });
+  })();
+
+  // ---------- Плавное появление секций ----------
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+    var els = document.querySelectorAll('.offer, .step, .use-card, .guarantee, .review, .card, .info-tile, .faq-item, .more-card, .trust-item, .quiz-wrap, .calc-wrap');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('rv-in'); io.unobserve(en.target); }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -5% 0px' });
+    els.forEach(function (el, i) {
+      el.classList.add('rv');
+      el.style.transitionDelay = Math.min(i % 4 * 70, 280) + 'ms';
+      io.observe(el);
+    });
+  })();
+</script>
 
 </main>
 <footer class="site-footer">
