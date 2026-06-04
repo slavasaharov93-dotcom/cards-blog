@@ -355,6 +355,7 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{base}styles.css">
+<script src="{base}site.js" defer></script>
 {extra_head}
 <script>
   // Применяем тему до отрисовки, чтобы не было вспышки.
@@ -413,6 +414,9 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
       <a href="{base}kazakhstan.html">Карта Казахстана</a>
       <a href="{base}kyrgyzstan.html">Карта Кыргызстана</a>
       <a href="{base}tajikistan.html">Карта Таджикистана</a>
+      <a href="{base}mastercard.html">Карта Mastercard</a>
+      <a href="{base}visa.html">Карта Visa</a>
+      <a href="{base}unionpay.html">Карта UnionPay</a>
       <a href="{base}cards.html#faq">Частые вопросы</a>
       <a href="{base}index.html#reviews">Отзывы</a>
       <a href="{base}index.html#guarantees">Гарантии</a>
@@ -1067,11 +1071,16 @@ INDEX_SCRIPTS = """
     renderResult();
   })();
 
-  // ---------- 3D-карта в hero ----------
+  // ---------- 3D-карта в hero: наклон за курсором + переворот по клику ----------
   (function () {
     var wrap = document.getElementById('hero-visual');
     var card = document.getElementById('card3d');
     if (!wrap || !card) return;
+    function flip() { card.classList.toggle('flipped-card'); }
+    card.addEventListener('click', flip);
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+    });
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (!matchMedia('(hover: hover)').matches) return;
     wrap.addEventListener('pointermove', function (e) {
@@ -1122,33 +1131,41 @@ def build_index(articles, cards_data):
         <a class="btn btn-primary" href="#quiz">Подобрать карту за 30 сек</a>
         <a class="btn btn-ghost" href="#lead">Получить консультацию</a>
       </div>
-      <div class="hero-stats">
-        <div><strong>от {fmt_price(min_price)} ₽</strong><span>цена карты</span></div>
-        <div><strong>{countries}</strong><span>стран на выбор</span></div>
-        <div><strong>от 1 дня</strong><span>срок выпуска</span></div>
-      </div>
     </div>
-    <div class="hero-visual" id="hero-visual" aria-hidden="true">
-      <div class="card3d card3d-back-card">
+    <div class="hero-visual" id="hero-visual">
+      <div class="card3d card3d-back-card" aria-hidden="true">
         <div class="card3d-face">
           <div class="card3d-row"><span class="card3d-chip"></span></div>
           <div class="card3d-num">5169 •••• •••• 8841</div>
           <div class="card3d-row card3d-foot"><span>KG · VISA GOLD</span><span>12/30</span></div>
         </div>
       </div>
-      <div class="card3d" id="card3d">
-        <div class="card3d-face">
-          <div class="card3d-row">
-            <span class="card3d-chip"></span>
-            <svg class="card3d-wave" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 8.5a8 8 0 0 1 0 7"/><path d="M9.5 6.5a11 11 0 0 1 0 11"/><path d="M13 4.5a14.5 14.5 0 0 1 0 15"/></svg>
+      <div class="card3d" id="card3d" role="button" tabindex="0" aria-label="Перевернуть карту">
+        <div class="card3d-rotor">
+          <div class="card3d-face">
+            <div class="card3d-row">
+              <span class="card3d-chip"></span>
+              <svg class="card3d-wave" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 8.5a8 8 0 0 1 0 7"/><path d="M9.5 6.5a11 11 0 0 1 0 11"/><path d="M13 4.5a14.5 14.5 0 0 1 0 15"/></svg>
+            </div>
+            <div class="card3d-num">4276 •••• •••• 2026</div>
+            <div class="card3d-row card3d-foot">
+              <span class="card3d-holder"><small>CARDHOLDER</small><b>CARDSABROAD CLIENT</b></span>
+              <span class="card3d-brand">◈</span>
+            </div>
+            <span class="card3d-shine"></span>
           </div>
-          <div class="card3d-num">4276 •••• •••• 2026</div>
-          <div class="card3d-row card3d-foot">
-            <span class="card3d-holder"><small>CARDHOLDER</small><b>CARDSABROAD CLIENT</b></span>
-            <span class="card3d-brand">◈</span>
+          <div class="card3d-face card3d-backface" aria-hidden="true">
+            <div class="card3d-stripe"></div>
+            <div class="card3d-sig"><span class="card3d-sig-line"></span><span class="card3d-cvv">•••</span></div>
+            <p class="card3d-backnote">ВЫПУСКАЕТСЯ ОФИЦИАЛЬНЫМ БАНКОМ-ПАРТНЁРОМ<br>ДОСТАВКА ПО РФ · ПОДДЕРЖКА ЕЖЕДНЕВНО 10:00–20:00</p>
+            <span class="card3d-fliphint">Нажмите ещё раз, чтобы вернуть ↻</span>
           </div>
-          <span class="card3d-shine"></span>
         </div>
+      </div>
+      <div class="hero-chips">
+        <div class="hero-chip hero-chip-1"><b>от {fmt_price(min_price)} ₽</b><span>цена карты</span></div>
+        <div class="hero-chip hero-chip-2"><b>{countries} стран</b><span>на выбор</span></div>
+        <div class="hero-chip hero-chip-3"><b>от 1 дня</b><span>срок выпуска</span></div>
       </div>
     </div>
   </div>
@@ -1776,6 +1793,23 @@ def main():
     img_src = ASSETS_DIR / "img"
     if img_src.is_dir():
         shutil.copytree(img_src, DIST / "assets" / "img")
+    # site.js — общие интерактивные улучшения (флип карточек каталога, оглавление статей)
+    if (ASSETS_DIR / "site.js").exists():
+        shutil.copyfile(ASSETS_DIR / "site.js", DIST / "site.js")
+    # Статические страницы (Mastercard/Visa/UnionPay) + robots/sitemap.
+    # В HTML подставляем токен Telegram при сборке (в исходниках — плейсхолдеры).
+    static_dir = ROOT / "static"
+    if static_dir.is_dir():
+        for f in sorted(static_dir.glob("*")):
+            if not f.is_file():
+                continue
+            if f.suffix == ".html":
+                txt = (f.read_text(encoding="utf-8")
+                       .replace("__TG_TOKEN__", TELEGRAM_BOT_TOKEN)
+                       .replace("__TG_CHAT__", TELEGRAM_CHAT_ID))
+                (DIST / f.name).write_text(txt, encoding="utf-8")
+            else:
+                shutil.copyfile(f, DIST / f.name)
 
     (DIST / "index.html").write_text(build_index(articles, cards_data), encoding="utf-8")
     (DIST / "cards.html").write_text(build_cards(cards_data), encoding="utf-8")

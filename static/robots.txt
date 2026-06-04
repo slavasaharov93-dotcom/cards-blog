@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://slavasaharov93-dotcom.github.io/cards-blog/sitemap.xml

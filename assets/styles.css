@@ -194,7 +194,7 @@ h1, h2 { font-family: var(--font-display); font-weight: 600; }
 .offers-section { padding: 72px 0; }
 .offers-grid {
   display: grid; gap: 22px;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
 }
 .offer {
   position: relative; display: flex; flex-direction: column; gap: 14px;
@@ -928,3 +928,136 @@ h1, h2 { font-family: var(--font-display); font-weight: 600; }
   border-color: rgba(59, 91, 219, .3);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, .06) inset, 0 40px 80px -28px rgba(16, 24, 40, .45), 0 0 70px -20px rgba(91, 124, 250, .4);
 }
+
+/* ============================================================
+   Hero: плавающие чипы со статами
+   ============================================================ */
+.hero-chips { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.hero-chip {
+  position: absolute; display: flex; flex-direction: column; gap: 1px;
+  padding: 12px 18px; border-radius: 14px;
+  background: rgba(10, 14, 26, .78); border: 1px solid var(--line-strong);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  animation: card-float 7s ease-in-out infinite;
+}
+.hero-chip b { font-family: var(--font-display); color: var(--ink); font-size: 1.05rem; font-weight: 600; white-space: nowrap; }
+.hero-chip span { font-size: .76rem; color: var(--muted); white-space: nowrap; }
+.hero-chip-1 { top: 2%; left: 0; animation-delay: .9s; }
+.hero-chip-2 { top: 30%; right: -2%; animation-delay: 1.8s; }
+.hero-chip-3 { bottom: 2%; left: 9%; animation-delay: 2.7s; }
+
+/* ============================================================
+   Флип hero-карты (оборотная сторона)
+   ============================================================ */
+#card3d { cursor: pointer; }
+.card3d-rotor {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.25, .7, .3, 1);
+}
+.card3d .card3d-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.card3d.flipped-card .card3d-rotor { transform: rotateY(180deg); }
+.card3d-backface {
+  transform: rotateY(180deg);
+  justify-content: flex-start; gap: 16px; padding: 0 0 20px;
+}
+.card3d-stripe { height: 46px; background: #07090f; margin-top: 26px; }
+.card3d-sig { margin: 0 24px; display: flex; align-items: center; gap: 10px; }
+.card3d-sig-line {
+  flex: 1; height: 32px; border-radius: 6px;
+  background: repeating-linear-gradient(45deg, #dfe4f5, #dfe4f5 6px, #cdd4ea 6px, #cdd4ea 12px);
+}
+.card3d-cvv {
+  padding: 5px 12px; border-radius: 6px; background: #fff; color: #0a0d18;
+  font-weight: 700; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9rem;
+}
+.card3d-backnote { margin: 0 24px; font-size: .64rem; color: rgba(238, 241, 255, .55); letter-spacing: .08em; line-height: 1.7; }
+.card3d-fliphint {
+  margin: auto 24px 0; font-size: .72rem; color: rgba(238, 241, 255, .7); letter-spacing: .04em;
+}
+
+/* ============================================================
+   Флип-карточки каталога (.offer → site.js)
+   ============================================================ */
+.offer.flipper {
+  background: none; border: 0; box-shadow: none; padding: 0;
+  perspective: 1400px; overflow: visible; display: block;
+}
+.offer.flipper:hover { transform: none; box-shadow: none; border-color: transparent; }
+.offer.is-popular.flipper { box-shadow: none; }
+.offer-rotor {
+  position: relative; display: grid; width: 100%; height: 100%; min-height: 100%;
+  transform-style: preserve-3d; cursor: pointer;
+  transition: transform .65s cubic-bezier(.25, .7, .3, 1);
+}
+.offer.flipped .offer-rotor { transform: rotateY(180deg); }
+@media (hover: hover) {
+  .offer.flipper:not(.flipped):hover .offer-rotor { transform: rotateY(-7deg); }
+  .offer.flipped:hover .offer-rotor { transform: rotateY(173deg); }
+}
+.offer-face {
+  grid-area: 1 / 1; min-width: 0;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 26px 24px; border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .03), transparent 40%), var(--surface);
+  box-shadow: var(--shadow);
+  transition: border-color .18s, box-shadow .18s;
+}
+.offer.flipper:hover .offer-face { border-color: rgba(124, 150, 255, .45); }
+.offer.is-popular .offer-face { border-color: rgba(124, 150, 255, .5); box-shadow: 0 0 0 1px rgba(124, 150, 255, .3), 0 0 44px -8px rgba(91, 124, 250, .35); }
+.offer-back { transform: rotateY(180deg); }
+.offer-front {
+  justify-content: space-between;
+  background:
+    radial-gradient(130% 140% at 0% 0%, rgba(91, 124, 250, .28), transparent 55%),
+    radial-gradient(120% 130% at 100% 100%, rgba(124, 92, 246, .22), transparent 55%),
+    linear-gradient(150deg, #11182e, #170f38);
+}
+.offer-front-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.offer-front-mid { display: flex; flex-direction: column; gap: 6px; }
+.offer-front-country { font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; color: var(--ink); line-height: 1.2; }
+.offer-front-name { color: var(--ink-soft); font-size: .95rem; }
+.offer-front-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.offer-front-price { font-family: var(--font-display); font-weight: 700; font-size: 1.7rem; color: var(--ink); }
+.offer-front-hint {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .78rem; color: var(--brand-dark); font-weight: 600;
+}
+.offer-front-hint svg { transition: transform .3s; }
+.offer.flipper:hover .offer-front-hint svg { transform: rotate(180deg); }
+
+/* ============================================================
+   Оглавление статей (TOC)
+   ============================================================ */
+.toc {
+  margin: 0 0 30px; padding: 20px 24px;
+  border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.toc b { display: block; color: var(--ink); margin-bottom: 10px; font-size: .92rem; letter-spacing: .04em; text-transform: uppercase; }
+.toc ol { margin: 0; padding-left: 1.25em; display: flex; flex-direction: column; gap: 7px; }
+.toc a { color: var(--ink-soft); text-decoration: none; }
+.toc a:hover { color: var(--brand-dark); }
+
+/* ---------- Адаптив ---------- */
+@media (max-width: 980px) {
+  .hero-chips {
+    position: static; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    margin-top: 20px; pointer-events: auto;
+  }
+  .hero-chip { position: static; animation: none; padding: 10px 16px; }
+}
+
+/* ---------- Светлая тема ---------- */
+:root[data-theme="light"] .hero-chip { background: rgba(255, 255, 255, .85); }
+:root[data-theme="light"] .offer-front {
+  background:
+    radial-gradient(130% 140% at 0% 0%, rgba(59, 91, 219, .14), transparent 55%),
+    radial-gradient(120% 130% at 100% 100%, rgba(112, 72, 232, .1), transparent 55%),
+    #fff;
+}
+:root[data-theme="light"] .card3d-backnote { color: rgba(238, 241, 255, .6); }
+:root[data-theme="light"] .toc { background: #fff; }
