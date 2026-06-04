@@ -1,0 +1,37 @@
+name: Build and Deploy
+
+# Запускается при каждом пуше в main (и вручную через кнопку Run workflow)
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write   # нужно, чтобы запушить собранный сайт в ветку gh-pages
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout исходников
+        uses: actions/checkout@v4
+
+      - name: Установка Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Сборка сайта (python build.py)
+        env:
+          # Токен берётся из GitHub Secrets, в коде его нет.
+          # Если секреты не заданы — сайт соберётся, но форма будет в демо-режиме.
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python build.py
+
+      - name: Публикация в gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
