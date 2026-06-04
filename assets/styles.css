@@ -746,3 +746,185 @@ h1, h2 { font-family: var(--font-display); font-weight: 600; }
 :root[data-theme="light"] .site-footer { background: #fff; }
 :root[data-theme="light"] .flat-img img { filter: none; }
 :root[data-theme="light"] .offer-flag img { box-shadow: 0 0 0 1px rgba(15, 23, 42, .12), 0 4px 10px rgba(16, 24, 40, .15); }
+
+/* ============================================================
+   Hero c 3D-картой
+   ============================================================ */
+.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; text-align: left; }
+.hero-grid .lead { margin-left: 0; }
+.hero-grid .hero-actions { justify-content: flex-start; }
+.hero-grid .hero-stats { justify-content: flex-start; margin-top: 48px; }
+.hero-visual {
+  position: relative; min-height: 320px;
+  display: grid; place-items: center;
+  perspective: 1100px;
+}
+.card3d {
+  position: relative; width: min(380px, 90%); aspect-ratio: 1.586;
+  border-radius: 22px;
+  transform: rotateY(14deg) rotateX(-6deg);
+  transform-style: preserve-3d;
+  transition: transform .35s ease;
+  animation: card-float 7s ease-in-out infinite;
+  will-change: transform;
+}
+.card3d-face {
+  position: absolute; inset: 0; border-radius: 22px; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 26px 28px; color: #eef1ff;
+  background:
+    radial-gradient(120% 160% at 0% 0%, rgba(124, 150, 255, .35), transparent 55%),
+    radial-gradient(110% 140% at 100% 100%, rgba(167, 139, 250, .3), transparent 55%),
+    linear-gradient(135deg, #131a33, #1c1440);
+  border: 1px solid rgba(170, 185, 255, .35);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .06) inset,
+    0 40px 80px -28px rgba(0, 0, 0, .8),
+    0 0 80px -20px rgba(110, 92, 246, .55);
+}
+.card3d-row { display: flex; align-items: center; justify-content: space-between; }
+.card3d-chip {
+  width: 46px; height: 34px; border-radius: 8px;
+  background: linear-gradient(135deg, #e8c87a, #b98e3e);
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 2px 6px rgba(0,0,0,.35);
+  position: relative;
+}
+.card3d-chip::after {
+  content: ""; position: absolute; inset: 7px 6px;
+  border: 1px solid rgba(80, 56, 10, .45); border-radius: 4px;
+}
+.card3d-wave { opacity: .8; }
+.card3d-num {
+  font-family: var(--font-display); font-size: clamp(1rem, 2.4vw, 1.35rem);
+  letter-spacing: .09em; text-shadow: 0 2px 8px rgba(0,0,0,.5);
+}
+.card3d-foot { font-size: .8rem; letter-spacing: .06em; }
+.card3d-holder { display: flex; flex-direction: column; gap: 2px; }
+.card3d-holder small { font-size: .58rem; opacity: .65; letter-spacing: .14em; }
+.card3d-holder b { font-weight: 600; font-size: .82rem; }
+.card3d-brand { font-size: 1.7rem; opacity: .9; }
+.card3d-shine {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .14) 46%, transparent 60%);
+  background-size: 220% 100%;
+  animation: card-shine 6s ease-in-out infinite;
+}
+.card3d-back-card {
+  position: absolute; width: min(340px, 80%);
+  transform: rotateY(20deg) rotateX(-10deg) translate3d(13%, 16%, -120px);
+  animation: none; opacity: .55; filter: blur(.4px);
+}
+.card3d-back-card .card3d-face {
+  background:
+    radial-gradient(120% 160% at 100% 0%, rgba(52, 211, 153, .25), transparent 55%),
+    linear-gradient(135deg, #101a2c, #0d2230);
+  box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .8);
+}
+@keyframes card-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -12px; }
+}
+@keyframes card-shine {
+  0%, 60%, 100% { background-position: 120% 0; }
+  30% { background-position: -60% 0; }
+}
+
+/* ============================================================
+   Квиз и калькулятор
+   ============================================================ */
+.quiz-section {
+  padding: 72px 0;
+  background: linear-gradient(180deg, transparent, rgba(124, 150, 255, .04) 40%, transparent);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.quiz-wrap {
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px;
+  padding: 34px; border-radius: calc(var(--radius) + 4px);
+  background: var(--surface); border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow);
+}
+.quiz-questions { display: flex; flex-direction: column; gap: 24px; }
+.quiz-label { font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+.quiz-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.quiz-opt {
+  padding: 9px 17px; border-radius: 999px; border: 1px solid var(--line-strong);
+  background: var(--glass); color: var(--ink-soft); font: inherit; font-size: .92rem; font-weight: 500;
+  cursor: pointer; transition: all .15s;
+}
+.quiz-opt:hover { border-color: var(--brand); color: var(--brand-dark); }
+.quiz-opt.active {
+  background: var(--grad-btn); border-color: transparent; color: #fff;
+  box-shadow: 0 8px 22px -8px rgba(91, 124, 250, .6);
+}
+.quiz-result {
+  display: flex; flex-direction: column; gap: 16px;
+  padding: 24px; border-radius: var(--radius);
+  background: rgba(124, 150, 255, .05);
+  border: 1px solid rgba(124, 150, 255, .25);
+}
+.quiz-best { display: flex; flex-direction: column; gap: 12px; }
+.quiz-best-head { display: flex; gap: 12px; align-items: center; }
+.quiz-best-head > div { display: flex; flex-direction: column; gap: 2px; }
+.quiz-best-head b { color: var(--ink); font-size: 1.05rem; line-height: 1.3; }
+.quiz-best-price { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--ink); }
+.quiz-best-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.quiz-alts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto; }
+.quiz-alt {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line-strong);
+  background: var(--glass); color: var(--ink-soft); font: inherit; font-size: .85rem;
+  cursor: pointer; transition: border-color .15s, color .15s;
+}
+.quiz-alt:hover { border-color: var(--brand); color: var(--brand-dark); }
+.calc-wrap {
+  margin-top: 22px; padding: 30px 34px; border-radius: calc(var(--radius) + 4px);
+  background: var(--surface); border: 1px solid var(--line-strong); box-shadow: var(--shadow);
+}
+.calc-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: 18px; }
+.calc-head h3 { margin: 0; font-size: 1.25rem; }
+.calc-controls { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.calc-rate { display: inline-flex; align-items: center; font-size: .9rem; color: var(--ink-soft); font-weight: 500; }
+.calc-rate input {
+  width: 64px; padding: 8px 10px; border-radius: 9px; border: 1px solid var(--line-strong);
+  background: var(--bg-2); color: var(--ink); font: inherit; text-align: right;
+}
+.calc-rate input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(124, 150, 255, .18); }
+.calc-rows { display: flex; flex-direction: column; margin-bottom: 14px; }
+.calc-row {
+  display: flex; justify-content: space-between; gap: 16px; padding: 11px 0;
+  border-bottom: 1px solid var(--line); font-size: .95rem;
+}
+.calc-row span { color: var(--ink-soft); }
+.calc-row b { color: var(--ink); font-weight: 600; text-align: right; }
+.calc-total { border-bottom: 0; padding-top: 16px; }
+.calc-total span { font-weight: 600; color: var(--ink); }
+.calc-total b { font-family: var(--font-display); font-size: 1.3rem; color: var(--brand-dark); }
+
+/* ============================================================
+   Scroll-reveal
+   ============================================================ */
+.rv { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.rv-in { opacity: 1; transform: none; }
+
+/* ---------- Адаптив новых блоков ---------- */
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-grid .hero-actions, .hero-grid .hero-stats { justify-content: center; }
+  .hero-grid .lead { margin-left: auto; margin-right: auto; }
+  .hero-visual { min-height: 260px; order: 2; }
+  .quiz-wrap { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .quiz-wrap, .calc-wrap { padding: 20px; }
+  .card3d { width: min(320px, 94%); }
+  .calc-head { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Светлая тема: новые блоки ---------- */
+:root[data-theme="light"] .quiz-result { background: rgba(59, 91, 219, .05); border-color: rgba(59, 91, 219, .2); }
+:root[data-theme="light"] .quiz-section { background: linear-gradient(180deg, transparent, rgba(59, 91, 219, .03) 40%, transparent); }
+:root[data-theme="light"] .calc-rate input { background: #fff; }
+:root[data-theme="light"] .card3d-face {
+  border-color: rgba(59, 91, 219, .3);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06) inset, 0 40px 80px -28px rgba(16, 24, 40, .45), 0 0 70px -20px rgba(91, 124, 250, .4);
+}
