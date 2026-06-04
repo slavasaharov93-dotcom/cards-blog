@@ -411,6 +411,8 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
       <h4>Популярное</h4>
       <a href="{base}subscriptions.html">Карта для подписок</a>
       <a href="{base}kazakhstan.html">Карта Казахстана</a>
+      <a href="{base}kyrgyzstan.html">Карта Кыргызстана</a>
+      <a href="{base}tajikistan.html">Карта Таджикистана</a>
       <a href="{base}cards.html#faq">Частые вопросы</a>
       <a href="{base}index.html#reviews">Отзывы</a>
       <a href="{base}index.html#guarantees">Гарантии</a>
@@ -1642,6 +1644,96 @@ def build_kazakhstan(cards_data):
         body, active="kazakhstan")
 
 
+def build_kyrgyzstan(cards_data):
+    picks = _solution_cards(cards_data, country="Кыргызстан", limit=6) or _solution_cards(cards_data, limit=6)
+    grid = "\n".join(offer_card("", c) for c in picks)
+    body = f"""
+<section class="hero hero-sm">
+  <div class="container">
+    <span class="eyebrow"><img src="https://flagcdn.com/kg.svg" alt="" width="20" style="border-radius:3px;margin-right:8px"> Кыргызстан</span>
+    <h1>Карта банка Кыргызстана для россиян в 2026</h1>
+    <p class="lead">Кыргызстан — один из самых выгодных вариантов зарубежной карты: дебетовые и кредитные
+    Visa уровня Gold, Platinum и Infinite, мультивалютные счета в долларах и евро, годовое обслуживание
+    от $20. Всё оформляется без поездки в Бишкек — дистанционно и с гарантией результата.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="order.html">Оформить карту Кыргызстана</a>
+      <a class="btn btn-ghost" href="cards.html">Все карты</a>
+    </div>
+  </div>
+</section>
+
+{infographic_cards(cards_data)}
+
+<section class="offers-section">
+  <div class="container">
+    <div class="section-head section-head-row">
+      <div><h2>Карты Кыргызстана</h2><p class="muted">Варианты, которые оформляем чаще всего.</p></div>
+      <a class="btn btn-ghost btn-sm" href="cards.html">Весь каталог →</a>
+    </div>
+    <div class="offers-grid">{grid}</div>
+  </div>
+</section>
+
+{steps_block()}
+
+{guarantees_block()}
+
+{cta_form_section("", heading="Оформить карту Кыргызстана", sub="Оставьте заявку — подберём банк и карту, сопроводим оформление удалённо.")}
+
+{faq_block(heading="Вопросы про карту Кыргызстана")}
+"""
+    return page_shell(
+        f"Карта Кыргызстана для россиян 2026 — оформление удалённо — {SITE_NAME}",
+        "Карта банка Кыргызстана для россиян в 2026: Visa Gold, Infinite, Platinum — дебетовые и "
+        "кредитные, мультивалютные счета USD/EUR. Оформление удалённо, цены от 32 990 ₽, гарантия.",
+        body, active="")
+
+
+def build_tajikistan(cards_data):
+    picks = _solution_cards(cards_data, country="Таджикистан", limit=6) or _solution_cards(cards_data, limit=6)
+    grid = "\n".join(offer_card("", c) for c in picks)
+    body = f"""
+<section class="hero hero-sm">
+  <div class="container">
+    <span class="eyebrow"><img src="https://flagcdn.com/tj.svg" alt="" width="20" style="border-radius:3px;margin-right:8px"> Таджикистан</span>
+    <h1>Карта банка Таджикистана для россиян в 2026</h1>
+    <p class="lead">Visa Gold таджикского банка — самый быстрый и доступный способ получить рабочую
+    зарубежную карту: выпуск всего за 3 дня, долларовый счёт и главное преимущество — карта напрямую
+    пополняется переводами из крупных российских банков. Оформляем удалённо, без поездки в Душанбе.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="order.html">Оформить карту Таджикистана</a>
+      <a class="btn btn-ghost" href="cards.html">Все карты</a>
+    </div>
+  </div>
+</section>
+
+{infographic_cards(cards_data)}
+
+<section class="offers-section">
+  <div class="container">
+    <div class="section-head section-head-row">
+      <div><h2>Карты Таджикистана</h2><p class="muted">Варианты, которые оформляем чаще всего.</p></div>
+      <a class="btn btn-ghost btn-sm" href="cards.html">Весь каталог →</a>
+    </div>
+    <div class="offers-grid">{grid}</div>
+  </div>
+</section>
+
+{steps_block()}
+
+{guarantees_block()}
+
+{cta_form_section("", heading="Оформить карту Таджикистана", sub="Оставьте заявку — поможем с выпуском и пополнением карты из российских банков.")}
+
+{faq_block(heading="Вопросы про карту Таджикистана")}
+"""
+    return page_shell(
+        f"Карта Таджикистана для россиян 2026 — оформление удалённо — {SITE_NAME}",
+        "Карта банка Таджикистана для россиян в 2026: Visa Gold с выпуском за 3 дня, счёт в долларах и "
+        "пополнением из российских банков (ВТБ, Сбер, Т-Банк). Оформление удалённо от 21 990 ₽.",
+        body, active="")
+
+
 # ---------------------------------------------------------------------------
 # Сборка
 # ---------------------------------------------------------------------------
@@ -1690,6 +1782,8 @@ def main():
     (DIST / "services.html").write_text(build_services(), encoding="utf-8")
     (DIST / "subscriptions.html").write_text(build_subscriptions(cards_data), encoding="utf-8")
     (DIST / "kazakhstan.html").write_text(build_kazakhstan(cards_data), encoding="utf-8")
+    (DIST / "kyrgyzstan.html").write_text(build_kyrgyzstan(cards_data), encoding="utf-8")
+    (DIST / "tajikistan.html").write_text(build_tajikistan(cards_data), encoding="utf-8")
     (DIST / "order.html").write_text(build_order(), encoding="utf-8")
     (DIST / "about.html").write_text(build_about(), encoding="utf-8")
     for a in articles:
