@@ -332,36 +332,42 @@ def chatbot_widget():
 def page_shell(title, description, body, *, active="", extra_head="", base=""):
     # base — префикс пути до корня сайта ("" для корня, "../" для /blog/*).
     nav_items = [("Главная", f"{base}index.html", "home"),
-                 ("Карты и цены", f"{base}cards.html", "cards"),
                  ("Услуги", f"{base}services.html", "services"),
                  ("Подписки", f"{base}subscriptions.html", "subscriptions"),
                  ("Блог", f"{base}index.html#blog", "blog"),
                  ("О нас", f"{base}about.html", "about")]
     links = [f'<a href="{href}"{" class=\"active\"" if active == key else ""}>{label}</a>'
              for label, href, key in nav_items]
-    # Два выпадающих пункта: «Страны» и «Платёжные системы».
     _chevron = ('<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
                 'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>')
-    dd_countries = (
-        '<div class="nav-dd">'
-        f'<button type="button" class="nav-dd-toggle" aria-expanded="false">Страны {_chevron}</button>'
-        '<div class="nav-dd-menu">'
-        f'<a href="{base}kazakhstan.html">🇰🇿 Казахстан</a>'
-        f'<a href="{base}kyrgyzstan.html">🇰🇬 Кыргызстан</a>'
-        f'<a href="{base}tajikistan.html">🇹🇯 Таджикистан</a>'
-        '</div></div>'
-    )
-    dd_systems = (
-        '<div class="nav-dd">'
-        f'<button type="button" class="nav-dd-toggle" aria-expanded="false">Системы {_chevron}</button>'
-        '<div class="nav-dd-menu">'
-        f'<a href="{base}mastercard.html">Mastercard</a>'
+
+    def _flag(code):
+        return f'<img src="https://flagcdn.com/{code}.svg" alt="" width="18" class="nav-flag">'
+
+    # Мега-меню «Карты»: страны + платёжные системы + инструменты (квиз, калькулятор, каталог).
+    nav_mega = (
+        '<div class="nav-dd nav-mega">'
+        f'<button type="button" class="nav-dd-toggle" aria-expanded="false">Карты {_chevron}</button>'
+        '<div class="nav-dd-menu nav-mega-menu">'
+        '<div class="nav-mega-col"><span class="nav-dd-head">Страны</span>'
+        f'<a href="{base}kazakhstan.html">{_flag("kz")}Казахстан</a>'
+        f'<a href="{base}kyrgyzstan.html">{_flag("kg")}Кыргызстан</a>'
+        f'<a href="{base}tajikistan.html">{_flag("tj")}Таджикистан</a>'
+        '</div>'
+        '<div class="nav-mega-col"><span class="nav-dd-head">Платёжные системы</span>'
         f'<a href="{base}visa.html">Visa</a>'
+        f'<a href="{base}mastercard.html">Mastercard</a>'
         f'<a href="{base}unionpay.html">UnionPay</a>'
+        '</div>'
+        '<div class="nav-mega-col"><span class="nav-dd-head">Инструменты</span>'
+        f'<a href="{base}cards.html">Весь каталог</a>'
+        f'<a href="{base}index.html#quiz">Подобрать карту</a>'
+        f'<a href="{base}index.html#calc-wrap">Стоимость владения</a>'
+        '</div>'
         '</div></div>'
     )
-    # Порядок: Главная, Карты, Услуги, Подписки, [Страны], [Платёжные системы], Блог, О нас
-    nav = "".join(links[:4]) + dd_countries + dd_systems + "".join(links[4:])
+    # Порядок: Главная, [Карты ▾], Услуги, Подписки, Блог, О нас
+    nav = links[0] + nav_mega + "".join(links[1:])
     chatbot = chatbot_widget()
     return f"""<!DOCTYPE html>
 <html lang="ru">
@@ -1686,6 +1692,8 @@ def build_kazakhstan(cards_data):
   </div>
 </section>
 
+{seo_section("Карта Казахстана для россиян: что важно знать", SEO_KZ)}
+
 {steps_block()}
 
 {guarantees_block()}
@@ -1730,6 +1738,8 @@ def build_kyrgyzstan(cards_data):
     <div class="offers-grid">{grid}</div>
   </div>
 </section>
+
+{seo_section("Карта Кыргызстана для россиян: что важно знать", SEO_KG)}
 
 {steps_block()}
 
@@ -1776,6 +1786,8 @@ def build_tajikistan(cards_data):
   </div>
 </section>
 
+{seo_section("Карта Таджикистана для россиян: что важно знать", SEO_TJ)}
+
 {steps_block()}
 
 {guarantees_block()}
@@ -1789,6 +1801,144 @@ def build_tajikistan(cards_data):
         "Карта банка Таджикистана для россиян в 2026: Visa Gold с выпуском за 3 дня, счёт в долларах и "
         "пополнением из российских банков (ВТБ, Сбер, Т-Банк). Оформление удалённо от 21 990 ₽.",
         body, active="")
+
+
+def seo_section(heading, body_html):
+    """SEO-блок (после каталога карт) — текст для поисковиков и пользы читателю."""
+    return (
+        '<section class="seo-section">\n'
+        '  <div class="container container-narrow seo-block">\n'
+        f'    <h2>{heading}</h2>\n'
+        f'    {body_html}\n'
+        '  </div>\n'
+        '</section>'
+    )
+
+
+# --- SEO-тексты страниц ---
+SEO_VISA = """
+<p>Карта Visa, выпущенная банком за пределами России, работает как полноценная международная карта: ею принимают в зарубежных интернет-магазинах, сервисах подписок (Apple, Google, Spotify, Steam, ChatGPT), при бронировании отелей и аренде авто, а также для снятия наличных в банкоматах за границей. В отличие от российских карт, она не отключается от международного процессинга и не зависит от санкционных ограничений.</p>
+<p>Мы оформляем Visa банков Таджикистана, Кыргызстана и Армении, а также виртуальные карты США. Дебетовые версии подходят для повседневных оплат и подписок, кредитные уровня Platinum и Signature — для крупных трат, аренды авто и поездок. Часть карт поддерживает мультивалютные счета в долларах и евро и исходящие SWIFT-переводы.</p>
+<p>Оформление проходит удалённо — лететь в страну банка не нужно. Мы подбираем карту под вашу задачу, помогаем с выпуском, пополнением из российских банков и активацией, а при отказе банка возвращаем оплату.</p>
+"""
+SEO_MASTERCARD = """
+<p>Mastercard зарубежного банка снимает ограничения, с которыми живут российские карты: ею можно расплачиваться в путешествиях, оплачивать иностранные подписки и сервисы, бронировать отели и авиабилеты, привязывать к Apple Pay и Google Pay. Карта работает в международном процессинге Mastercard и принимается почти везде, где есть приём бесконтактных платежей.</p>
+<p>В каталоге — пластиковые Mastercard Казахстана, Армении и Турции и виртуальная карта Гонконга с выпуском за один день. Для оплаты подписок обычно достаточно недорогой дебетовой карты, для поездок и крупных покупок — премиальных версий с высокими лимитами и счётом в долларах или евро.</p>
+<p>Всё оформляем дистанционно: подбираем банк, помогаем с документами, SIM-картой и пополнением. Если банк откажет в выпуске — вернём деньги полностью.</p>
+"""
+SEO_UNIONPAY = """
+<p>UnionPay — крупнейшая китайская платёжная система, и после ухода Visa и Mastercard из России о ней вспоминают в первую очередь. На практике же приём UnionPay за пределами Азии нестабилен: в Европе и США карту часто не принимают в офлайн-магазинах, а зарубежные онлайн-сервисы (подписки, маркетплейсы, бронирования) нередко её отклоняют.</p>
+<p>UnionPay действительно полезна в Китае и ряде стран Азии, но как универсальное решение для оплаты подписок, путешествий и онлайн-сервисов она уступает. Для стабильного приёма по всему миру надёжнее карта Visa или Mastercard, выпущенная зарубежным банком, — её принимают там же, где работали привычные российские карты до 2022 года.</p>
+<p>Если вам нужна рабочая карта для зарубежных платежей, мы поможем подобрать подходящую Visa или Mastercard под вашу задачу и бюджет — удалённо и с гарантией возврата при отказе банка.</p>
+"""
+SEO_KZ = """
+<p>Карта казахстанского банка — один из самых доступных способов получить рабочую зарубежную карту: цены начинаются примерно от 15 000 ₽, а сами карты Visa и Mastercard свободно принимаются в зарубежных онлайн-сервисах и подписках. Для оформления обычно нужны ИИН (индивидуальный идентификационный номер) и казахстанская SIM-карта — с этим мы помогаем в рамках сопровождения.</p>
+<p>Казахстанские карты особенно удобны для оплаты подписок (Apple, Google, Steam, ChatGPT) и онлайн-покупок. Оформление возможно удалённо или с сопровождением поездки; при отказе банка мы возвращаем оплату.</p>
+"""
+SEO_KG = """
+<p>Кыргызстан — один из самых выгодных вариантов зарубежной карты: банки выпускают дебетовые и кредитные Visa уровня Gold, Platinum и Infinite с мультивалютными счетами в долларах и евро и низким годовым обслуживанием (от 20 $ в год). Кредитные версии без лимитов подходят для аренды авто и крупных трат, а мультивалютная карта удобна и для подписок, и для путешествий.</p>
+<p>Всё оформляется без поездки в Бишкек — дистанционно и с гарантией результата. Мы подбираем карту под вашу задачу, помогаем с выпуском, активацией и пополнением из российских банков.</p>
+"""
+SEO_TJ = """
+<p>Visa Gold таджикского банка — самый быстрый и доступный способ получить рабочую зарубежную карту: выпуск занимает около трёх дней, у карты долларовый счёт, а главное преимущество — прямое пополнение переводами из крупных российских банков (ВТБ, Сбер, Газпромбанк, Т-Банк, ЮMoney). Это снимает главную головную боль зарубежных карт — как их пополнять из России.</p>
+<p>Карта подходит для оплаты подписок, онлайн-покупок и поездок. Оформляем удалённо, без визита в Душанбе; при отказе банка возвращаем оплату.</p>
+"""
+
+
+def _payment_page(cards_data, *, eyebrow, title, lead, cta_text, cta_href,
+                  offers_heading, offers_sub, system, seo_heading, seo_html,
+                  faq_heading, cta_heading, cta_sub, desc):
+    if system:
+        picks = [c for c in cards_data
+                 if c.get("system", "").lower() == system.lower() and c.get("available", True)][:6]
+    else:
+        picks = [c for c in cards_data if c.get("popular") and c.get("available", True)][:6]
+    if not picks:
+        picks = _solution_cards(cards_data, limit=6)
+    grid = "\n".join(offer_card("", c) for c in picks)
+    body = f"""
+<section class="hero hero-sm">
+  <div class="container">
+    <span class="eyebrow">{eyebrow}</span>
+    <h1>{title}</h1>
+    <p class="lead">{lead}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{cta_href}">{cta_text}</a>
+      <a class="btn btn-ghost" href="cards.html">Все карты</a>
+    </div>
+  </div>
+</section>
+
+<section class="offers-section">
+  <div class="container">
+    <div class="section-head section-head-row">
+      <div><h2>{offers_heading}</h2><p class="muted">{offers_sub}</p></div>
+      <a class="btn btn-ghost btn-sm" href="cards.html">Весь каталог →</a>
+    </div>
+    <div class="offers-grid">{grid}</div>
+  </div>
+</section>
+
+{seo_section(seo_heading, seo_html)}
+
+{guarantees_block()}
+
+{cta_form_section("", heading=cta_heading, sub=cta_sub)}
+
+{faq_block(heading=faq_heading)}
+"""
+    return page_shell(f"{title} — оформление удалённо — {SITE_NAME}", desc, body, active="")
+
+
+def build_visa(cards_data):
+    return _payment_page(
+        cards_data,
+        eyebrow="Платёжная система Visa", title="Карта Visa для россиян в 2026",
+        lead=("Visa, выпущенная зарубежным банком, — полноценная международная карта: ей платят по всему миру, "
+              "в онлайн-магазинах и сервисах подписок, снимают наличные за границей, привязывают к Apple Pay и Google Pay. "
+              "Оформляем Visa банков Таджикистана, Кыргызстана, Армении и виртуальные карты США — удалённо, с гарантией возврата."),
+        cta_text="Оформить карту Visa", cta_href="order.html",
+        offers_heading="Какие карты Visa мы оформляем",
+        offers_sub="Несколько показательных вариантов — от быстрой виртуальной до кредитной без лимитов. В каталоге есть и другие карты Visa.",
+        system="Visa",
+        seo_heading="Зачем россиянину карта Visa зарубежного банка", seo_html=SEO_VISA,
+        faq_heading="Вопросы про карту Visa",
+        cta_heading="Оформить карту Visa", cta_sub="Оставьте заявку — подберём банк и карту Visa под вашу задачу, сопроводим оформление.",
+        desc="Карта Visa для россиян в 2026: дебетовые и кредитные карты зарубежных банков, мультивалютные счета USD/EUR, оформление удалённо с гарантией возврата.")
+
+
+def build_mastercard(cards_data):
+    return _payment_page(
+        cards_data,
+        eyebrow="Платёжная система Mastercard", title="Карта Mastercard для россиян в 2026",
+        lead=("Mastercard зарубежного банка снимает ограничения российских карт: оплата в путешествиях, зарубежные подписки, "
+              "бронирование отелей и авиабилетов. В каталоге — пластиковые Mastercard Казахстана, Армении и Турции и виртуальная "
+              "карта Гонконга с выпуском за один день. Всё оформляем дистанционно, при отказе банка возвращаем деньги."),
+        cta_text="Оформить карту Mastercard", cta_href="order.html",
+        offers_heading="Какие карты Mastercard мы оформляем",
+        offers_sub="От недорогой дебетовой до премиальной — под подписки, путешествия и крупные траты.",
+        system="MasterCard",
+        seo_heading="Что даёт Mastercard зарубежного банка", seo_html=SEO_MASTERCARD,
+        faq_heading="Вопросы про карту Mastercard",
+        cta_heading="Оформить карту Mastercard", cta_sub="Оставьте заявку — подберём банк и карту Mastercard под вашу задачу.",
+        desc="Карта Mastercard для россиян в 2026: пластиковые и виртуальные карты зарубежных банков, оплата подписок и путешествий, оформление удалённо.")
+
+
+def build_unionpay(cards_data):
+    return _payment_page(
+        cards_data,
+        eyebrow="Платёжная система UnionPay · Гайд", title="Карта UnionPay для россиян в 2026",
+        lead=("UnionPay — крупнейшая китайская платёжная система, о которой вспоминают после ухода Visa и Mastercard из России. "
+              "Но её приём за пределами Азии нестабилен, а онлайн-сервисы такие карты часто отклоняют. Честно разбираем, где UnionPay "
+              "работает, какие у неё ограничения и когда выгоднее взять Visa или Mastercard зарубежного банка."),
+        cta_text="Подобрать альтернативу", cta_href="index.html#quiz",
+        offers_heading="Надёжные альтернативы UnionPay",
+        offers_sub="Карты Visa и Mastercard зарубежных банков — стабильный приём по всему миру и в онлайне.",
+        system=None,
+        seo_heading="Где работает UnionPay и чем её заменить", seo_html=SEO_UNIONPAY,
+        faq_heading="Вопросы про UnionPay и альтернативы",
+        cta_heading="Подобрать рабочую карту", cta_sub="Оставьте заявку — поможем выбрать Visa или Mastercard под ваши задачи вместо UnionPay.",
+        desc="Карта UnionPay для россиян в 2026: где реально работает, ограничения и почему Visa или Mastercard зарубежного банка надёжнее. Подбор и оформление.")
 
 
 # ---------------------------------------------------------------------------
@@ -1859,6 +2009,9 @@ def main():
     (DIST / "kazakhstan.html").write_text(build_kazakhstan(cards_data), encoding="utf-8")
     (DIST / "kyrgyzstan.html").write_text(build_kyrgyzstan(cards_data), encoding="utf-8")
     (DIST / "tajikistan.html").write_text(build_tajikistan(cards_data), encoding="utf-8")
+    (DIST / "visa.html").write_text(build_visa(cards_data), encoding="utf-8")
+    (DIST / "mastercard.html").write_text(build_mastercard(cards_data), encoding="utf-8")
+    (DIST / "unionpay.html").write_text(build_unionpay(cards_data), encoding="utf-8")
     (DIST / "order.html").write_text(build_order(), encoding="utf-8")
     (DIST / "about.html").write_text(build_about(), encoding="utf-8")
     for a in articles:
