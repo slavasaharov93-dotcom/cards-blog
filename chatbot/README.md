@@ -1,52 +1,63 @@
 # ИИ-чат-бот для сайта — настройка бэкенда (Cloudflare Worker)
 
-Бот работает по схеме: **виджет на сайте → Worker (хранит ключ) → Claude API**.
-Ключ Anthropic лежит в секрете Worker и на сайт не попадает.
+Бот работает: **виджет на сайте → Worker (хранит ключи) → Claude / ChatGPT API**.
+Админ-режим умеет публиковать статьи в блог через **GitHub API** (→ авто-деплой).
+Все ключи лежат в секретах Worker и на сайт не попадают.
+
+## Возможности
+- Выбор провайдера (Anthropic/OpenAI) и модели — прямо в чате.
+- **Публичный режим** — FAQ для посетителей (про карты).
+- **Админ-режим** (по паролю) — знает внутрянку блога/оркестры + кнопка «Написать статью» (бот сам публикует статью в блог).
 
 ## Что понадобится
-- API-ключ Anthropic (`sk-ant-...`) — с console.anthropic.com, пополненный баланс.
-- Бесплатный аккаунт Cloudflare — dash.cloudflare.com.
+- API-ключ **Anthropic** (`sk-ant-...`) — console.anthropic.com (баланс пополнен).
+- API-ключ **OpenAI** (`sk-...`) — platform.openai.com (баланс пополнен).
+- **GitHub fine-grained токен** — github.com → Settings → Developer settings → Fine-grained tokens:
+  - Repository access: **Only select repositories** → `cards-blog`.
+  - Permissions → **Contents: Read and write**. Скопировать токен (`github_pat_...`).
+- Пароль для админ-режима — придумать самому.
+- Бесплатный аккаунт Cloudflare.
 
 ## Шаги
 
 ### 1. Создать Worker
-1. dash.cloudflare.com → **Workers & Pages** → **Create** → **Create Worker**.
-2. Имя, например `cardsabroad-chat` → **Deploy**.
-3. **Edit code** → удалить шаблон, вставить содержимое [`worker.js`](worker.js) → **Deploy**.
+dash.cloudflare.com → **Workers & Pages** → **Create Worker** → имя `cardsabroad-chat` → **Deploy** →
+**Edit code** → вставить содержимое [`worker.js`](worker.js) → **Deploy**.
 
-### 2. Добавить ключ как секрет
-1. Worker → **Settings** → **Variables and Secrets**.
-2. **Add** → тип **Secret** → имя `ANTHROPIC_API_KEY`, значение — твой ключ `sk-ant-...` → **Deploy**.
+### 2. Добавить 4 секрета
+Worker → **Settings** → **Variables and Secrets** → для каждого: **Add** → тип **Secret** → **Deploy**:
 
-### 3. (Рекомендуется) Лимит запросов по IP
-1. **Storage & Databases** → **KV** → **Create namespace**, имя `chat-rate-limit`.
-2. Worker → **Settings** → **Bindings** → **Add** → **KV namespace**:
-   - Variable name: `RATE_LIMIT`
-   - KV namespace: `chat-rate-limit` → **Deploy**.
-   (Без этого бот тоже работает, просто без лимита по IP.)
+| Имя | Значение |
+|---|---|
+| `ANTHROPIC_API_KEY` | `sk-ant-...` |
+| `OPENAI_API_KEY` | `sk-...` |
+| `ADMIN_PASSWORD` | твой пароль для админ-режима |
+| `GITHUB_TOKEN` | `github_pat_...` (Contents: R/W на cards-blog) |
 
-### 4. Защита бюджета (важно)
-- В консоли Anthropic → **Billing** → задать **месячный лимит трат** (spend limit).
-- В коде уже стоят: `MAX_TOKENS=512`, лимит длины и числа сообщений, лимит по IP.
+### 3. (Рекомендуется) Лимит по IP
+**Storage & Databases → KV** → Create namespace `chat-rate-limit`.
+Worker → Settings → **Bindings** → Add → KV namespace: переменная `RATE_LIMIT` → namespace `chat-rate-limit` → Deploy.
+
+### 4. Защита бюджета
+- Anthropic и OpenAI: задать **месячные лимиты трат** в биллинге.
+- В коде уже: лимит токенов, длины, числа сообщений, лимит по IP.
 
 ### 5. Скопировать адрес Worker
-В обзоре Worker будет адрес вида `https://cardsabroad-chat.ВАШ-ПОДДОМЕН.workers.dev`.
-**Этот адрес нужен виджету на сайте** — передай его, чтобы подключить чат.
+`https://cardsabroad-chat.ВАШ-ПОДДОМЕН.workers.dev` — передать его для подключения виджета.
 
 ## Проверка
-В консоли Worker (**Logs** или **Quick edit → Preview**) или командой:
 ```
 curl -X POST https://cardsabroad-chat.ВАШ.workers.dev \
-  -H "Content-Type: application/json" \
-  -H "Origin: https://slavasaharov93-dotcom.github.io" \
-  -d '{"messages":[{"role":"user","content":"Какая карта для оплаты подписок?"}]}'
+  -H "Content-Type: application/json" -H "Origin: https://slavasaharov93-dotcom.github.io" \
+  -d '{"provider":"anthropic","model":"claude-haiku-4-5","messages":[{"role":"user","content":"Какая карта для подписок?"}]}'
 ```
-Должен вернуться JSON вида `{"reply":"..."}`.
+Ответ — JSON `{"reply":"..."}`.
 
-## Обновление каталога
-Цены/карты бот берёт из переменной `SITE_CONTEXT` в `worker.js`. При смене цен —
-обновить этот текст и заново нажать **Deploy**.
+## Настройки в коде (worker.js)
+- `PROVIDERS` — список моделей (модели OpenAI поправь под свой аккаунт).
+- `PUBLIC_CONTEXT` / `ADMIN_CONTEXT` — что бот знает (каталог карт / внутрянку блога).
+- При смене цен или появлении новых моделей — отредактировать и нажать **Deploy**.
 
 ## Стоимость
-Модель `claude-haiku-4-5` — порядка долей цента за сообщение. Cloudflare Worker —
-бесплатного тарифа хватает с запасом (100 000 запросов/день).
+Haiku / gpt-4o-mini — доли цента за сообщение; генерация статьи — несколько центов.
+Cloudflare Worker — бесплатного тарифа хватает (100 000 запросов/день).
