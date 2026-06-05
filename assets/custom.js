@@ -64,7 +64,7 @@
 
   // --- Стили ---
   var CSS = "\
-.caw-btn{position:fixed;right:20px;bottom:20px;width:60px;height:60px;border:none;border-radius:50%;\
+.caw-btn{position:fixed;left:20px;bottom:20px;width:60px;height:60px;border:none;border-radius:50%;\
 background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;cursor:pointer;z-index:2147483000;\
 box-shadow:0 8px 24px rgba(37,99,235,.4);display:flex;align-items:center;justify-content:center;\
 transition:transform .2s ease,box-shadow .2s ease}\
@@ -75,7 +75,7 @@ border:2px solid #fff;border-radius:50%}\
 .caw-pulse::after{content:'';position:absolute;inset:0;border-radius:50%;\
 background:rgba(37,99,235,.45);animation:cawPulse 2s infinite;z-index:-1}\
 @keyframes cawPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}\
-.caw-panel{position:fixed;right:20px;bottom:92px;width:370px;max-width:calc(100vw - 32px);\
+.caw-panel{position:fixed;left:20px;bottom:92px;width:370px;max-width:calc(100vw - 32px);\
 height:580px;max-height:calc(100vh - 120px);background:#fff;border-radius:18px;z-index:2147483000;\
 box-shadow:0 18px 50px rgba(15,23,42,.28);display:flex;flex-direction:column;overflow:hidden;\
 opacity:0;transform:translateY(16px) scale(.98);pointer-events:none;transition:opacity .22s ease,transform .22s ease;\
@@ -126,7 +126,7 @@ display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrin
 .caw-send svg{width:20px;height:20px}\
 .caw-artbtn{border:none;background:#eef2ff;color:#4f46e5;border-radius:10px;padding:0 12px;height:40px;cursor:pointer;font-size:13px;flex-shrink:0;white-space:nowrap}\
 .caw-note{font-size:11px;color:#94a3b8;text-align:center;padding:0 10px 8px;background:#fff}\
-@media(max-width:480px){.caw-panel{right:8px;left:8px;width:auto;bottom:84px;height:calc(100vh - 100px)}.caw-btn{right:14px;bottom:14px}}";
+@media(max-width:480px){.caw-panel{right:8px;left:8px;width:auto;bottom:84px;height:calc(100vh - 100px)}.caw-btn{left:14px;bottom:14px}}";
 
   var style = document.createElement("style");
   style.textContent = CSS;
@@ -369,5 +369,200 @@ display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrin
   input.addEventListener("input", autoGrow);
   input.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(input.value); }
+  });
+})();
+
+/* ===== Ниже: fixes.js — правки дизайна по аудиту (отдельный self-contained IIFE) ===== */
+/* ════════════════════════════════════════════════════════════════
+   CardsAbroad — fixes.js (правки DOM по дизайн-аудиту)
+   Подключать ПОСЛЕДНИМ, перед </body>:
+   <script src="fixes.js" defer></script>
+   Работает на всех страницах, каждая правка обёрнута в try/catch.
+   ════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  /* Карта: страна → код флага и страница «Подробнее» */
+  var COUNTRIES = {
+    'Казахстан':   { flag: 'kz', page: 'kazakhstan.html' },
+    'Кыргызстан':  { flag: 'kg', page: 'kyrgyzstan.html' },
+    'Таджикистан': { flag: 'tj', page: 'tajikistan.html' },
+    'Армения':     { flag: 'am', page: '' },
+    'Турция':      { flag: 'tr', page: '' }
+  };
+
+  function slugify(s) {
+    return (s || '').toLowerCase()
+      .replace(/[^a-zа-яё0-9]+/gi, '-')
+      .replace(/^-+|-+$/g, '').slice(0, 60);
+  }
+
+  ready(function () {
+
+    /* ── 1. ФЛАГИ: эмодзи → SVG (Windows не показывает флаги-эмодзи) ── */
+    try {
+      document.querySelectorAll('.offer-flag').forEach(function (el) {
+        if (el.querySelector('img')) return;
+        var card = el.closest('.offer');
+        var name = card && card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : '';
+        var c = COUNTRIES[name];
+        if (!c) return;
+        var img = document.createElement('img');
+        img.src = 'https://flagcdn.com/' + c.flag + '.svg';
+        img.alt = 'Флаг: ' + name;
+        img.width = 38; img.loading = 'lazy';
+        el.textContent = '';
+        el.appendChild(img);
+      });
+      /* alt для флагов в выпадающем меню */
+      document.querySelectorAll('.nav-flag').forEach(function (img) {
+        if (!img.alt) img.alt = '';
+        img.setAttribute('aria-hidden', 'true');
+      });
+    } catch (e) {}
+
+    /* ── 2. КАРТОЧКИ: кнопка «Подробнее о карте» + свёртка характеристик ── */
+    try {
+      document.querySelectorAll('.offer').forEach(function (card) {
+        var face = card.querySelector('.offer-back') || card;
+        var cta = face.querySelector('.offer-cta');
+        var name = face.querySelector('.offer-name');
+        var country = face.querySelector('h3');
+        var specs = face.querySelector('.offer-specs');
+        if (!cta) return;
+
+        /* 2a. «Оформить» → order.html?card=… (предвыбор на странице заказа) */
+        var slug = slugify((country ? country.textContent : '') + '-' + (name ? name.textContent : ''));
+        if (cta.getAttribute('href') === 'order.html' && slug) {
+          cta.setAttribute('href', 'order.html?card=' + encodeURIComponent(slug) +
+            '&country=' + encodeURIComponent(country ? country.textContent.trim() : ''));
+        }
+
+        /* 2b. Обёртка действий + «Подробнее о карте» */
+        var actions = document.createElement('div');
+        actions.className = 'offer-actions';
+        cta.parentNode.insertBefore(actions, cta);
+        actions.appendChild(cta);
+
+        var cInfo = COUNTRIES[country ? country.textContent.trim() : ''];
+        if (cInfo && cInfo.page) {
+          var more = document.createElement('a');
+          more.className = 'offer-more-link';
+          more.href = cInfo.page;
+          more.textContent = 'Подробнее о карте';
+          actions.appendChild(more);
+        }
+
+        /* 2c. Свёртка характеристик: показываем 4, остальные — по клику */
+        if (specs && specs.children.length > 4) {
+          var hidden = specs.children.length - 4;
+          var toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'offer-specs-toggle';
+          toggle.textContent = 'Все характеристики (' + specs.children.length + ') ↓';
+          toggle.setAttribute('aria-expanded', 'false');
+          specs.parentNode.insertBefore(toggle, specs.nextSibling);
+          toggle.addEventListener('click', function () {
+            var open = card.classList.toggle('specs-open');
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.textContent = open ? 'Свернуть ↑' : 'Все характеристики (' + specs.children.length + ') ↓';
+          });
+        }
+      });
+    } catch (e) {}
+
+    /* ── 3. БЕЙДЖИ: «Хит» только на одной карточке, остальным — свои ярлыки ── */
+    try {
+      var badges = document.querySelectorAll('.offers-grid .offer-back .offer-badge.hot, .offers-grid .offer:not(.flipper) .offer-badge.hot');
+      var labels = [
+        null,                                  /* первый остаётся «Хит» */
+        { cls: 'value',   text: 'Выгодно' },
+        { cls: 'value',   text: 'Низкая плата' },
+        { cls: 'premium', text: 'Премиум' }
+      ];
+      badges.forEach(function (b, i) {
+        var l = labels[Math.min(i, labels.length - 1)];
+        if (i === 0 || !l) return;
+        b.classList.remove('hot');
+        b.classList.add(l.cls);
+        b.textContent = l.text;
+      });
+    } catch (e) {}
+
+    /* ── 4. HERO: компактный заголовок + строка доверия + якорь CTA ── */
+    try {
+      var h1 = document.querySelector('.hero h1');
+      if (h1 && /Зарубежная карта для россиян/.test(h1.textContent)) {
+        h1.innerHTML = 'Зарубежная карта <span class="grad">под ключ</span>';
+      }
+      var actions = document.querySelector('.hero-actions');
+      if (actions && !document.querySelector('.hero-proof')) {
+        var proof = document.createElement('p');
+        proof.className = 'hero-proof';
+        proof.innerHTML = '<span class="star">★</span> <b>4.9 из 5</b> · более <b>1500</b> оформленных карт · возврат денег при отказе банка';
+        actions.parentNode.insertBefore(proof, actions.nextSibling);
+      }
+    } catch (e) {}
+
+    /* ── 5. КВИЗ: состояние выбора для клавиатуры и скринридеров ── */
+    try {
+      var opts = document.querySelectorAll('.quiz-opt');
+      function syncQuiz() {
+        opts.forEach(function (o) {
+          o.setAttribute('aria-pressed', o.classList.contains('active') ? 'true' : 'false');
+        });
+      }
+      if (opts.length) {
+        syncQuiz();
+        document.addEventListener('click', function (e) {
+          if (e.target.closest && e.target.closest('.quiz-opt')) setTimeout(syncQuiz, 0);
+        });
+      }
+    } catch (e) {}
+
+    /* ── 6. ORDER: предвыбор карты из ?country=… ── */
+    try {
+      var params = new URLSearchParams(location.search);
+      var country = params.get('country');
+      if (country) {
+        document.querySelectorAll('select[name="card"]').forEach(function (sel) {
+          var opt = Array.prototype.find.call(sel.options, function (o) {
+            return o.textContent.indexOf(country) !== -1;
+          });
+          if (opt) sel.value = opt.value || opt.textContent;
+        });
+      }
+    } catch (e) {}
+
+    /* ── 7. ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ: показываем одну иконку (противоположную) ── */
+    try {
+      var tt = document.querySelector('.theme-toggle');
+      if (tt) {
+        var sync = function () {
+          var dark = document.documentElement.getAttribute('data-theme') !== 'light';
+          var sun = tt.querySelector('.ic-sun'), moon = tt.querySelector('.ic-moon');
+          if (sun) sun.style.display = dark ? '' : 'none';
+          if (moon) moon.style.display = dark ? 'none' : '';
+          tt.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему');
+        };
+        sync();
+        tt.addEventListener('click', function () { setTimeout(sync, 0); });
+      }
+    } catch (e) {}
+
+    /* ── 8. ВНЕШНИЕ ССЫЛКИ: безопасный rel ── */
+    try {
+      document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
+        var rel = (a.getAttribute('rel') || '').split(/\s+/);
+        if (rel.indexOf('noopener') === -1) rel.push('noopener');
+        a.setAttribute('rel', rel.join(' ').trim());
+      });
+    } catch (e) {}
+
   });
 })();
