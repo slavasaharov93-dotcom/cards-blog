@@ -390,7 +390,7 @@ def page_shell(title, description, body, *, active="", extra_head="", base=""):
   (function () {{
     try {{
       var t = localStorage.getItem('theme');
-      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (!t) t = 'dark';   // тёмная тема по умолчанию для всех; выбор пользователя (если есть) уважается
       document.documentElement.setAttribute('data-theme', t);
     }} catch (e) {{}}
   }})();
