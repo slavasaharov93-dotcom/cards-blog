@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Скажи",
+    "slug": "skazhi-app",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#F4F1EA"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.skazhi.app"
+    },
+    "android": {
+      "package": "com.skazhi.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#F4F1EA"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
